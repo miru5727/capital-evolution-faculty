@@ -1,0 +1,3055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capital Evolution, Module 1 (Faculty)</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:    #1B2A4A;
+    --red:     #C0392B;
+    --blue:    #2E5F8A;
+    --ltgrey:  #F4F5F7;
+    --white:   #FFFFFF;
+    --offwhite:#EEF1F5;
+    --muted:   #7A8499;
+    --slate:   #4A5568;
+    --dark2:   #243558;
+    --radius:  8px;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--slate);
+    background: var(--ltgrey);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--navy);
+    border-bottom: 3px solid var(--red);
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .nav-brand {
+    padding: 0 1.5rem;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1rem;
+    color: var(--white);
+    font-weight: 700;
+    white-space: nowrap;
+    border-right: 1px solid rgba(255,255,255,0.12);
+    height: 52px;
+    display: flex;
+    align-items: center;
+  }
+  .nav-brand span { color: var(--red); margin-left: 6px; }
+  .nav-links {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    gap: 0;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a {
+    padding: 0 1rem;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: color 0.15s, border-bottom 0.15s;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -3px;
+  }
+  .nav-links a:hover { color: var(--white); border-bottom-color: var(--red); }
+  .nav-track {
+    margin-left: auto;
+    padding: 0 1.5rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0;
+    width: 6px; height: 100%;
+    background: var(--red);
+  }
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+  .hero h1 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--white);
+    font-weight: 700;
+    line-height: 1.2;
+    max-width: 720px;
+    margin: 0 auto 0.5rem;
+  }
+  .hero h1 span { color: var(--red); }
+  .hero-sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.6);
+    font-style: italic;
+    max-width: 560px;
+    margin: 0.75rem auto 0;
+  }
+  .hero-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+  .hero-meta-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .hero-meta-item .label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .hero-meta-item .value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--white);
+  }
+  .mlo-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 2rem;
+    padding: 0 1rem;
+  }
+  .mlo-pill {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.7);
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+  }
+  .section-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--white);
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-num.red { background: var(--red); }
+  .section-num.blue { background: var(--blue); }
+  .section-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.4rem;
+    color: var(--navy);
+    font-weight: 700;
+  }
+  .divider {
+    height: 1px;
+    background: rgba(0,0,0,0.08);
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* ── VIDEO PLACEHOLDER ── */
+  .video-placeholder {
+    background: var(--dark2);
+    border-radius: var(--radius);
+    aspect-ratio: 16/9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    border: 2px dashed rgba(255,255,255,0.15);
+  }
+  .video-placeholder .play-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .video-placeholder .play-icon svg { margin-left: 4px; }
+  .video-placeholder .video-label {
+    color: var(--white);
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.1rem;
+    text-align: center;
+    max-width: 400px;
+    padding: 0 1rem;
+  }
+  .video-placeholder .video-sub {
+    color: var(--muted);
+    font-size: 0.82rem;
+  }
+  .video-caption {
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-style: italic;
+    text-align: center;
+  }
+
+  /* ── READING CARDS ── */
+  .reading-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--blue);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .reading-card.red-border { border-left-color: var(--red); }
+  .reading-card .reading-type {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--blue);
+    margin-bottom: 6px;
+  }
+  .reading-card.red-border .reading-type { color: var(--red); }
+  .reading-card h3 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1rem;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+  }
+  .reading-card p {
+    font-size: 0.9rem;
+    color: var(--slate);
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+  }
+  .reading-card a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--blue);
+    text-decoration: none;
+  }
+  .reading-card a:hover { text-decoration: underline; }
+  .reading-card a svg { flex-shrink: 0; }
+
+  /* ── FRANKENSTEIN SUMMARY ── */
+  .essay-summary {
+    background: var(--offwhite);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-top: 1rem;
+  }
+  .essay-summary h4 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.95rem;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+  }
+  .essay-summary ul {
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .essay-summary li {
+    font-size: 0.88rem;
+    color: var(--slate);
+  }
+
+  /* ── TERMINOLOGY ── */
+  .term-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+  .term-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .term-card .term {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+  }
+  .term-card .definition {
+    font-size: 0.85rem;
+    color: var(--slate);
+    line-height: 1.6;
+  }
+
+  /* ── QUIZ ── */
+  .quiz-container {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .quiz-progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  .quiz-progress-bar {
+    flex: 1;
+    height: 4px;
+    background: var(--ltgrey);
+    border-radius: 2px;
+    margin: 0 1rem;
+    overflow: hidden;
+  }
+  .quiz-progress-fill {
+    height: 100%;
+    background: var(--blue);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+  .quiz-q-num {
+    font-size: 0.8rem;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .quiz-question {
+    display: none;
+  }
+  .quiz-question.active {
+    display: block;
+  }
+  .quiz-question h3 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.05rem;
+    color: var(--navy);
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
+  }
+  .quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .quiz-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    border: 1.5px solid rgba(0,0,0,0.1);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    background: var(--white);
+  }
+  .quiz-option:hover { border-color: var(--blue); background: var(--offwhite); }
+  .quiz-option.selected { border-color: var(--blue); background: #EDF3F9; }
+  .quiz-option.correct { border-color: #2E7D32; background: #F0F7F0; }
+  .quiz-option.incorrect { border-color: var(--red); background: #FDF3F2; }
+  .quiz-option .opt-letter {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--ltgrey);
+    font-size: 0.78rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--slate);
+  }
+  .quiz-option.correct .opt-letter { background: #2E7D32; color: white; }
+  .quiz-option.incorrect .opt-letter { background: var(--red); color: white; }
+  .quiz-option .opt-text { font-size: 0.9rem; color: var(--slate); line-height: 1.5; padding-top: 2px; }
+  .quiz-feedback {
+    display: none;
+    margin-top: 1rem;
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius);
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+  .quiz-feedback.correct { background: #F0F7F0; color: #1B5E20; border-left: 3px solid #2E7D32; }
+  .quiz-feedback.incorrect { background: #FDF3F2; color: #7B1A14; border-left: 3px solid var(--red); }
+  .quiz-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    gap: 1rem;
+  }
+  .btn {
+    padding: 0.65rem 1.5rem;
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.15s, transform 0.1s;
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn-primary { background: var(--navy); color: var(--white); }
+  .btn-primary:hover { background: var(--dark2); }
+  .btn-secondary { background: var(--ltgrey); color: var(--slate); }
+  .btn-secondary:hover { background: #E2E5EA; }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .quiz-score {
+    display: none;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+  .quiz-score .score-num {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 3rem;
+    color: var(--navy);
+    font-weight: 700;
+    line-height: 1;
+  }
+  .quiz-score .score-label {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-top: 0.25rem;
+  }
+  .quiz-score .score-msg {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: var(--slate);
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── REFLECTION ── */
+  .reflection-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .reflection-part {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--ltgrey);
+  }
+  .reflection-part:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .reflection-part h4 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1rem;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+  }
+  .reflection-part p {
+    font-size: 0.9rem;
+    color: var(--slate);
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+  }
+  .reflection-part ul {
+    padding-left: 1.25rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .reflection-part li { font-size: 0.88rem; color: var(--slate); }
+  textarea {
+    width: 100%;
+    border: 1.5px solid rgba(0,0,0,0.12);
+    border-radius: var(--radius);
+    padding: 0.85rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: var(--slate);
+    resize: vertical;
+    min-height: 100px;
+    transition: border-color 0.15s;
+    background: var(--white);
+  }
+  textarea:focus { outline: none; border-color: var(--blue); }
+  .reflection-note {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    font-style: italic;
+  }
+
+  /* ── EXIT TICKET ── */
+  .exit-ticket {
+    background: var(--navy);
+    border-radius: var(--radius);
+    padding: 2rem;
+    color: var(--white);
+  }
+  .exit-ticket h3 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.1rem;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+  .exit-question {
+    margin-bottom: 1.5rem;
+  }
+  .exit-question p {
+    font-size: 0.9rem;
+    color: var(--offwhite);
+    margin-bottom: 0.75rem;
+  }
+  .exit-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .exit-option {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .exit-option:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.3); }
+  .exit-option.selected { background: rgba(192,57,43,0.25); border-color: var(--red); }
+  .exit-option input[type="radio"] { display: none; }
+  .exit-dot {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.3);
+    flex-shrink: 0;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .exit-option.selected .exit-dot { background: var(--red); border-color: var(--red); }
+  .exit-option span { font-size: 0.88rem; color: var(--offwhite); }
+  .exit-textarea-wrap { margin-top: 0.5rem; }
+  .exit-textarea-wrap textarea {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.15);
+    color: var(--white);
+    min-height: 80px;
+  }
+  .exit-textarea-wrap textarea::placeholder { color: rgba(255,255,255,0.35); }
+  .exit-textarea-wrap textarea:focus { border-color: rgba(255,255,255,0.4); }
+  .exit-submit {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+  }
+  .exit-success {
+    display: none;
+    text-align: center;
+    padding: 1.5rem;
+  }
+  .exit-success p { color: var(--offwhite); font-size: 0.95rem; }
+  .exit-success .check {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* ── PAGE CONTENT BLOCK ── */
+  .content-block {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    margin-bottom: 1rem;
+  }
+  .content-block h3 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.05rem;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+  }
+  .content-block p {
+    font-size: 0.9rem;
+    color: var(--slate);
+    line-height: 1.7;
+    margin-bottom: 0.6rem;
+  }
+  .content-block p:last-child { margin-bottom: 0; }
+
+  /* ── SECTION BG ALTERNATES ── */
+  .bg-white-section { background: var(--white); }
+  .bg-white-section .section { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .hero { padding: 3rem 1.25rem 2rem; }
+    .section { padding: 2rem 1rem; }
+    .quiz-container, .reflection-card { padding: 1.25rem; }
+    .exit-ticket { padding: 1.25rem; }
+  }
+
+/* M2 */
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy:#1B2A4A; --red:#C0392B; --blue:#2E5F8A; --ltgrey:#F4F5F7;
+    --white:#FFFFFF; --offwhite:#EEF1F5; --muted:#7A8499; --slate:#4A5568; --dark2:#243558;
+    --radius:8px;
+  }
+  body { font-family:'Inter',sans-serif; font-size:16px; line-height:1.7; color:var(--slate); background:var(--ltgrey); }
+
+  nav { position:sticky; top:0; z-index:100; background:var(--navy); border-bottom:3px solid var(--red); display:flex; align-items:center; }
+  .nav-brand { padding:0 1.5rem; font-family:'Libre Baskerville',serif; font-size:1rem; color:var(--white); font-weight:700; white-space:nowrap; border-right:1px solid rgba(255,255,255,0.12); height:52px; display:flex; align-items:center; }
+  .nav-brand span { color:var(--red); margin-left:6px; }
+  .nav-links { display:flex; overflow-x:auto; scrollbar-width:none; }
+  .nav-links::-webkit-scrollbar { display:none; }
+  .nav-links a { padding:0 1rem; height:52px; display:flex; align-items:center; color:rgba(255,255,255,0.65); text-decoration:none; font-size:0.8rem; font-weight:500; letter-spacing:0.04em; text-transform:uppercase; white-space:nowrap; border-bottom:3px solid transparent; margin-bottom:-3px; transition:color 0.15s; }
+  .nav-links a:hover { color:var(--white); border-bottom-color:var(--red); }
+  .nav-track { margin-left:auto; padding:0 1.5rem; font-size:0.75rem; color:var(--muted); white-space:nowrap; }
+
+  .hero { background:var(--navy); padding:4rem 2rem 3rem; text-align:center; position:relative; overflow:hidden; }
+  .hero::before { content:''; position:absolute; left:0; top:0; width:6px; height:100%; background:var(--red); }
+  .hero-eyebrow { font-size:0.72rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:1rem; }
+  .hero h1 { font-family:'Libre Baskerville',serif; font-size:clamp(1.8rem,4vw,2.8rem); color:var(--white); font-weight:700; line-height:1.2; max-width:720px; margin:0 auto 0.5rem; }
+  .hero h1 span { color:var(--red); }
+  .hero-sub { font-size:1rem; color:rgba(255,255,255,0.6); font-style:italic; max-width:560px; margin:0.75rem auto 0; }
+  .hero-meta { display:flex; justify-content:center; gap:2rem; margin-top:2rem; flex-wrap:wrap; }
+  .hero-meta-item { display:flex; flex-direction:column; align-items:center; gap:4px; }
+  .hero-meta-item .label { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); }
+  .hero-meta-item .value { font-size:0.9rem; font-weight:600; color:var(--white); }
+  .mlo-pills { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-top:2rem; padding:0 1rem; }
+  .mlo-pill { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:20px; padding:5px 14px; font-size:0.78rem; color:rgba(255,255,255,0.7); }
+
+  .section { max-width:860px; margin:0 auto; padding:3rem 1.5rem; }
+  .section-header { display:flex; align-items:center; gap:1rem; margin-bottom:1.75rem; }
+  .section-num { width:36px; height:36px; border-radius:50%; background:var(--navy); color:var(--white); font-size:0.85rem; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .section-num.red { background:var(--red); }
+  .section-num.blue { background:var(--blue); }
+  .section-title { font-family:'Libre Baskerville',serif; font-size:1.4rem; color:var(--navy); font-weight:700; }
+  .divider { height:1px; background:rgba(0,0,0,0.08); max-width:860px; margin:0 auto; }
+  .bg-white-section { background:var(--white); }
+  .bg-white-section .section { padding-top:2.5rem; padding-bottom:2.5rem; }
+
+  .video-placeholder { background:var(--dark2); border-radius:var(--radius); aspect-ratio:16/9; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem; margin-bottom:1rem; border:2px dashed rgba(255,255,255,0.15); }
+  .play-icon { width:60px; height:60px; border-radius:50%; background:var(--red); display:flex; align-items:center; justify-content:center; }
+  .play-icon svg { margin-left:4px; }
+  .video-label { color:var(--white); font-family:'Libre Baskerville',serif; font-size:1.1rem; text-align:center; max-width:400px; padding:0 1rem; }
+  .video-sub { color:var(--muted); font-size:0.82rem; }
+  .video-caption { font-size:0.82rem; color:var(--muted); font-style:italic; text-align:center; }
+
+  .video-embed { border-radius:var(--radius); overflow:hidden; position:relative; padding-bottom:56.25%; height:0; margin-bottom:1rem; }
+  .video-embed iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+  .reading-card { background:var(--white); border-radius:var(--radius); padding:1.5rem; margin-bottom:1rem; border-left:4px solid var(--blue); box-shadow:0 1px 4px rgba(0,0,0,0.06); }
+  .reading-card.red-border { border-left-color:var(--red); }
+  .reading-card .reading-type { font-size:0.7rem; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--blue); margin-bottom:6px; }
+  .reading-card.red-border .reading-type { color:var(--red); }
+  .reading-card h3 { font-family:'Libre Baskerville',serif; font-size:1rem; color:var(--navy); margin-bottom:0.5rem; font-weight:700; }
+  .reading-card p { font-size:0.9rem; color:var(--slate); margin-bottom:0.75rem; line-height:1.6; }
+  .reading-card a { display:inline-flex; align-items:center; gap:6px; font-size:0.85rem; font-weight:600; color:var(--blue); text-decoration:none; }
+  .reading-card a:hover { text-decoration:underline; }
+  .essay-summary { background:var(--offwhite); border-radius:var(--radius); padding:1.25rem; margin-top:0.75rem; }
+  .essay-summary h4 { font-family:'Libre Baskerville',serif; font-size:0.9rem; color:var(--navy); margin-bottom:0.6rem; }
+  .essay-summary ul { padding-left:1.25rem; display:flex; flex-direction:column; gap:0.4rem; }
+  .essay-summary li { font-size:0.87rem; color:var(--slate); }
+
+  .content-block { background:var(--white); border-radius:var(--radius); padding:1.75rem; box-shadow:0 1px 4px rgba(0,0,0,0.06); margin-bottom:1rem; }
+  .content-block h3 { font-family:'Libre Baskerville',serif; font-size:1.05rem; color:var(--navy); margin-bottom:0.75rem; }
+  .content-block p { font-size:0.9rem; color:var(--slate); line-height:1.7; margin-bottom:0.6rem; }
+  .content-block p:last-child { margin-bottom:0; }
+
+  /* MATCHING ACTIVITY */
+  .matching-intro { font-size:0.92rem; color:var(--slate); margin-bottom:1.5rem; line-height:1.6; }
+  .matching-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:1.5rem; }
+  .matching-col { background:var(--white); border-radius:var(--radius); overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,0.06); }
+  .matching-col-header { padding:0.75rem 1rem; font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--white); }
+  .matching-col-header.growth { background:var(--blue); }
+  .matching-col-header.decline { background:var(--red); }
+  .matching-drop-zone { min-height:200px; padding:0.75rem; display:flex; flex-direction:column; gap:0.5rem; }
+  .matching-drop-zone.drag-over { background:var(--offwhite); outline:2px dashed var(--blue); border-radius:4px; }
+  .factor-bank { display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1.5rem; }
+  .factor-item { background:var(--white); border:1.5px solid rgba(0,0,0,0.1); border-radius:var(--radius); padding:0.65rem 1rem; font-size:0.88rem; color:var(--slate); cursor:grab; user-select:none; transition:border-color 0.15s, box-shadow 0.15s; display:flex; align-items:center; gap:0.5rem; }
+  .factor-item:hover { border-color:var(--blue); box-shadow:0 2px 6px rgba(0,0,0,0.08); }
+  .factor-item.dragging { opacity:0.4; }
+  .factor-item.placed-growth { background:#EDF3F9; border-color:var(--blue); cursor:default; }
+  .factor-item.placed-decline { background:#FDF3F2; border-color:var(--red); cursor:default; }
+  .factor-item.correct { background:#F0F7F0; border-color:#2E7D32; }
+  .factor-item.incorrect { background:#FDF3F2; border-color:var(--red); }
+  .drag-handle { color:var(--muted); font-size:0.8rem; }
+  .matching-check { display:flex; gap:0.75rem; align-items:center; }
+  .matching-feedback { font-size:0.88rem; color:var(--slate); }
+  .btn { padding:0.65rem 1.5rem; border-radius:var(--radius); font-size:0.9rem; font-weight:600; cursor:pointer; border:none; transition:opacity 0.15s; }
+  .btn-primary { background:var(--navy); color:var(--white); }
+  .btn-primary:hover { background:var(--dark2); }
+  .btn-secondary { background:var(--ltgrey); color:var(--slate); }
+  .btn-secondary:hover { background:#E2E5EA; }
+
+  /* REFLECTION */
+  .reflection-card { background:var(--white); border-radius:var(--radius); padding:2rem; box-shadow:0 1px 4px rgba(0,0,0,0.06); }
+  .reflection-part { margin-bottom:1.5rem; padding-bottom:1.5rem; border-bottom:1px solid var(--ltgrey); }
+  .reflection-part:last-child { margin-bottom:0; padding-bottom:0; border-bottom:none; }
+  .reflection-part h4 { font-family:'Libre Baskerville',serif; font-size:1rem; color:var(--navy); margin-bottom:0.75rem; }
+  .reflection-part p { font-size:0.9rem; color:var(--slate); margin-bottom:0.75rem; line-height:1.6; }
+  .reflection-part ul { padding-left:1.25rem; margin-bottom:0.75rem; display:flex; flex-direction:column; gap:0.35rem; }
+  .reflection-part li { font-size:0.88rem; color:var(--slate); }
+  .word-count { font-size:0.78rem; color:var(--muted); margin-top:0.4rem; }
+  textarea { width:100%; border:1.5px solid rgba(0,0,0,0.12); border-radius:var(--radius); padding:0.85rem 1rem; font-family:'Inter',sans-serif; font-size:0.9rem; color:var(--slate); resize:vertical; min-height:140px; transition:border-color 0.15s; background:var(--white); }
+  textarea:focus { outline:none; border-color:var(--blue); }
+
+  /* EXIT TICKET */
+  .exit-ticket { background:var(--navy); border-radius:var(--radius); padding:2rem; color:var(--white); }
+  .exit-ticket h3 { font-family:'Libre Baskerville',serif; font-size:1.1rem; color:var(--white); margin-bottom:1.5rem; }
+  .exit-question { margin-bottom:1.5rem; }
+  .exit-question p { font-size:0.9rem; color:var(--offwhite); margin-bottom:0.75rem; }
+  .exit-options { display:flex; flex-direction:column; gap:0.5rem; }
+  .exit-option { display:flex; align-items:center; gap:0.65rem; padding:0.65rem 0.9rem; border:1px solid rgba(255,255,255,0.15); border-radius:var(--radius); cursor:pointer; transition:background 0.15s; }
+  .exit-option:hover { background:rgba(255,255,255,0.08); }
+  .exit-option.selected { background:rgba(192,57,43,0.25); border-color:var(--red); }
+  .exit-option input[type="radio"] { display:none; }
+  .exit-dot { width:18px; height:18px; border-radius:50%; border:2px solid rgba(255,255,255,0.3); flex-shrink:0; transition:background 0.15s; }
+  .exit-option.selected .exit-dot { background:var(--red); border-color:var(--red); }
+  .exit-option span { font-size:0.88rem; color:var(--offwhite); }
+  .exit-textarea-wrap textarea { background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.15); color:var(--white); min-height:80px; }
+  .exit-textarea-wrap textarea::placeholder { color:rgba(255,255,255,0.35); }
+  .exit-success { display:none; text-align:center; padding:1.5rem; }
+  .exit-success p { color:var(--offwhite); font-size:0.95rem; }
+  .exit-success .check { font-size:2rem; margin-bottom:0.5rem; }
+
+  @media(max-width:640px) {
+    .matching-grid { grid-template-columns:1fr; }
+    .hero { padding:3rem 1.25rem 2rem; }
+    .section { padding:2rem 1rem; }
+  }
+
+/* M3 */
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  :root{--navy:#1B2A4A;--red:#C0392B;--blue:#2E5F8A;--ltgrey:#F4F5F7;--white:#FFFFFF;--offwhite:#EEF1F5;--muted:#7A8499;--slate:#4A5568;--dark2:#243558;--radius:8px;}
+  body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--slate);background:var(--ltgrey);}
+  nav{position:sticky;top:0;z-index:100;background:var(--navy);border-bottom:3px solid var(--red);display:flex;align-items:center;}
+  .nav-brand{padding:0 1.5rem;font-family:'Libre Baskerville',serif;font-size:1rem;color:var(--white);font-weight:700;white-space:nowrap;border-right:1px solid rgba(255,255,255,0.12);height:52px;display:flex;align-items:center;}
+  .nav-brand span{color:var(--red);margin-left:6px;}
+  .nav-links{display:flex;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;touch-action:pan-x;}
+  .nav-links::-webkit-scrollbar{display:none;}
+  .nav-links a{padding:0 1rem;height:52px;display:flex;align-items:center;color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.8rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;transition:color 0.15s;}
+  .nav-links a:hover{color:var(--white);border-bottom-color:var(--red);}
+  .nav-track{margin-left:auto;padding:0 1.5rem;font-size:0.75rem;color:var(--muted);white-space:nowrap;}
+  .hero{background:var(--navy);padding:4rem 2rem 3rem;text-align:center;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;left:0;top:0;width:6px;height:100%;background:var(--red);}
+  .hero-eyebrow{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;}
+  .hero h1{font-family:'Libre Baskerville',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:var(--white);font-weight:700;line-height:1.2;max-width:720px;margin:0 auto 0.5rem;}
+  .hero h1 span{color:var(--red);}
+  .hero-sub{font-size:1rem;color:rgba(255,255,255,0.6);font-style:italic;max-width:560px;margin:0.75rem auto 0;}
+  .hero-meta{display:flex;justify-content:center;gap:2rem;margin-top:2rem;flex-wrap:wrap;}
+  .hero-meta-item{display:flex;flex-direction:column;align-items:center;gap:4px;}
+  .hero-meta-item .label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);}
+  .hero-meta-item .value{font-size:0.9rem;font-weight:600;color:var(--white);}
+  .mlo-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:2rem;padding:0 1rem;}
+  .mlo-pill{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:5px 14px;font-size:0.78rem;color:rgba(255,255,255,0.7);}
+  .section{max-width:860px;margin:0 auto;padding:3rem 1.5rem;}
+  .section-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.75rem;}
+  .section-num{width:36px;height:36px;border-radius:50%;background:var(--navy);color:var(--white);font-size:0.85rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .section-num.red{background:var(--red);}
+  .section-num.blue{background:var(--blue);}
+  .section-title{font-family:'Libre Baskerville',serif;font-size:1.4rem;color:var(--navy);font-weight:700;}
+  .divider{height:1px;background:rgba(0,0,0,0.08);max-width:860px;margin:0 auto;}
+  .bg-white-section{background:var(--white);}
+  .bg-white-section .section{padding-top:2.5rem;padding-bottom:2.5rem;}
+  .video-placeholder{background:var(--dark2);border-radius:var(--radius);aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;margin-bottom:1rem;border:2px dashed rgba(255,255,255,0.15);}
+  .play-icon{width:60px;height:60px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;}
+  .play-icon svg{margin-left:4px;}
+  .video-label{color:var(--white);font-family:'Libre Baskerville',serif;font-size:1.1rem;text-align:center;max-width:400px;padding:0 1rem;}
+  .video-sub{color:var(--muted);font-size:0.82rem;}
+  .video-caption{font-size:0.82rem;color:var(--muted);font-style:italic;text-align:center;}
+  .yt-card{background:var(--dark2);border-radius:var(--radius);padding:1.75rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;margin-bottom:1rem;}
+  .yt-card-label{font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:0.4rem;}
+  .yt-card-title{font-family:'Libre Baskerville',serif;font-size:1.05rem;color:var(--white);font-weight:700;margin-bottom:0.4rem;}
+  .yt-card-desc{font-size:0.85rem;color:var(--offwhite);}
+  .yt-btn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:white;padding:0.65rem 1.25rem;border-radius:var(--radius);font-size:0.88rem;font-weight:600;text-decoration:none;white-space:nowrap;}
+  .yt-btn:hover{background:#a93226;}
+  .reading-card{background:var(--white);border-radius:var(--radius);padding:1.5rem;margin-bottom:1rem;border-left:4px solid var(--blue);box-shadow:0 1px 4px rgba(0,0,0,0.06);}
+  .reading-card.red-border{border-left-color:var(--red);}
+  .reading-card .reading-type{font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--blue);margin-bottom:6px;}
+  .reading-card.red-border .reading-type{color:var(--red);}
+  .reading-card h3{font-family:'Libre Baskerville',serif;font-size:1rem;color:var(--navy);margin-bottom:0.5rem;font-weight:700;}
+  .reading-card p{font-size:0.9rem;color:var(--slate);margin-bottom:0.75rem;line-height:1.6;}
+  .reading-card a{display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;font-weight:600;color:var(--blue);text-decoration:none;}
+  .reading-card a:hover{text-decoration:underline;}
+  .essay-summary{background:var(--offwhite);border-radius:var(--radius);padding:1.25rem;margin-top:0.75rem;}
+  .essay-summary h4{font-family:'Libre Baskerville',serif;font-size:0.9rem;color:var(--navy);margin-bottom:0.6rem;}
+  .essay-summary ul{padding-left:1.25rem;display:flex;flex-direction:column;gap:0.4rem;}
+  .essay-summary li{font-size:0.87rem;color:var(--slate);}
+  .tenet-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-bottom:1.5rem;}
+  .tenet-card{border-radius:var(--radius);padding:1.5rem;color:var(--white);}
+  .tenet-card.blue{background:var(--blue);}
+  .tenet-card.red{background:var(--red);}
+  .tenet-card.navy{background:var(--navy);}
+  .tenet-card .tenet-label{font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.6);margin-bottom:0.4rem;}
+  .tenet-card h3{font-family:'Libre Baskerville',serif;font-size:1.1rem;font-weight:700;margin-bottom:0.5rem;}
+  .tenet-card p{font-size:0.85rem;color:rgba(255,255,255,0.85);line-height:1.6;}
+  .throughline-banner{background:var(--dark2);border:1.5px dashed rgba(255,255,255,0.25);border-radius:var(--radius);padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
+  .throughline-label{font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);white-space:nowrap;}
+  .throughline-text{font-family:'Libre Baskerville',serif;font-size:1rem;color:var(--white);font-weight:700;}
+  .throughline-sub{font-size:0.85rem;color:var(--offwhite);font-style:italic;}
+  .case-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;}
+  .case-card{background:var(--white);border-radius:var(--radius);padding:1.25rem;box-shadow:0 1px 4px rgba(0,0,0,0.06);border-top:3px solid var(--blue);}
+  .case-card.red-top{border-top-color:var(--red);}
+  .case-card.navy-top{border-top-color:var(--navy);}
+  .case-card .case-tenet{font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--blue);margin-bottom:0.35rem;}
+  .case-card.red-top .case-tenet{color:var(--red);}
+  .case-card.navy-top .case-tenet{color:var(--navy);}
+  .case-card h4{font-family:'Libre Baskerville',serif;font-size:0.95rem;color:var(--navy);font-weight:700;margin-bottom:0.4rem;}
+  .case-card p{font-size:0.85rem;color:var(--slate);line-height:1.6;}
+  .rubric-card{background:var(--white);border-radius:var(--radius);padding:1.75rem;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin-bottom:1rem;}
+  .rubric-card h3{font-family:'Libre Baskerville',serif;font-size:1.05rem;color:var(--navy);margin-bottom:0.75rem;}
+  .rubric-card p{font-size:0.9rem;color:var(--slate);line-height:1.7;margin-bottom:0.6rem;}
+  .rubric-card ul{padding-left:1.25rem;display:flex;flex-direction:column;gap:0.5rem;margin-bottom:0.75rem;}
+  .rubric-card li{font-size:0.88rem;color:var(--slate);}
+  textarea{width:100%;border:1.5px solid rgba(0,0,0,0.12);border-radius:var(--radius);padding:0.85rem 1rem;font-family:'Inter',sans-serif;font-size:0.9rem;color:var(--slate);resize:vertical;min-height:120px;transition:border-color 0.15s;background:var(--white);}
+  textarea:focus{outline:none;border-color:var(--blue);}
+  .btn{padding:0.65rem 1.5rem;border-radius:var(--radius);font-size:0.9rem;font-weight:600;cursor:pointer;border:none;transition:opacity 0.15s;}
+  .btn-primary{background:var(--navy);color:var(--white);}
+  .btn-primary:hover{background:var(--dark2);}
+  .btn-secondary{background:var(--ltgrey);color:var(--slate);}
+  .btn-secondary:hover{background:#E2E5EA;}
+  .btn:disabled{opacity:0.4;cursor:not-allowed;}
+  .quiz-container{background:var(--white);border-radius:var(--radius);padding:2rem;box-shadow:0 1px 4px rgba(0,0,0,0.06);}
+  .quiz-progress{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;}
+  .quiz-progress-bar{flex:1;height:4px;background:var(--ltgrey);border-radius:2px;margin:0 1rem;overflow:hidden;}
+  .quiz-progress-fill{height:100%;background:var(--blue);border-radius:2px;transition:width 0.3s ease;}
+  .quiz-q-num{font-size:0.8rem;color:var(--muted);white-space:nowrap;}
+  .quiz-question{display:none;}
+  .quiz-question.active{display:block;}
+  .quiz-question h3{font-family:'Libre Baskerville',serif;font-size:1.05rem;color:var(--navy);margin-bottom:1.25rem;line-height:1.5;}
+  .quiz-options{display:flex;flex-direction:column;gap:0.6rem;}
+  .quiz-option{display:flex;align-items:flex-start;gap:0.75rem;padding:0.85rem 1rem;border:1.5px solid rgba(0,0,0,0.1);border-radius:var(--radius);cursor:pointer;transition:border-color 0.15s,background 0.15s;background:var(--white);}
+  .quiz-option:hover{border-color:var(--blue);background:var(--offwhite);}
+  .quiz-option.selected{border-color:var(--blue);background:#EDF3F9;}
+  .quiz-option.correct{border-color:#2E7D32;background:#F0F7F0;}
+  .quiz-option.incorrect{border-color:var(--red);background:#FDF3F2;}
+  .opt-letter{width:26px;height:26px;border-radius:50%;background:var(--ltgrey);font-size:0.78rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--slate);}
+  .quiz-option.correct .opt-letter{background:#2E7D32;color:white;}
+  .quiz-option.incorrect .opt-letter{background:var(--red);color:white;}
+  .opt-text{font-size:0.9rem;color:var(--slate);line-height:1.5;padding-top:2px;}
+  .quiz-feedback{display:none;margin-top:1rem;padding:0.85rem 1rem;border-radius:var(--radius);font-size:0.88rem;line-height:1.5;}
+  .quiz-feedback.correct{background:#F0F7F0;color:#1B5E20;border-left:3px solid #2E7D32;}
+  .quiz-feedback.incorrect{background:#FDF3F2;color:#7B1A14;border-left:3px solid var(--red);}
+  .quiz-actions{display:flex;justify-content:space-between;align-items:center;margin-top:1.5rem;gap:1rem;}
+  .quiz-score{display:none;text-align:center;padding:2rem 1rem;}
+  .quiz-score .score-num{font-family:'Libre Baskerville',serif;font-size:3rem;color:var(--navy);font-weight:700;line-height:1;}
+  .quiz-score .score-label{font-size:0.9rem;color:var(--muted);margin-top:0.25rem;}
+  .quiz-score .score-msg{margin-top:1rem;font-size:1rem;color:var(--slate);max-width:360px;margin-left:auto;margin-right:auto;}
+  .exit-ticket{background:var(--navy);border-radius:var(--radius);padding:2rem;color:var(--white);}
+  .exit-ticket h3{font-family:'Libre Baskerville',serif;font-size:1.1rem;color:var(--white);margin-bottom:1.5rem;}
+  .exit-question{margin-bottom:1.5rem;}
+  .exit-question p{font-size:0.9rem;color:var(--offwhite);margin-bottom:0.75rem;}
+  .exit-options{display:flex;flex-direction:column;gap:0.5rem;}
+  .exit-option{display:flex;align-items:center;gap:0.65rem;padding:0.65rem 0.9rem;border:1px solid rgba(255,255,255,0.15);border-radius:var(--radius);cursor:pointer;transition:background 0.15s;}
+  .exit-option:hover{background:rgba(255,255,255,0.08);}
+  .exit-option.selected{background:rgba(192,57,43,0.25);border-color:var(--red);}
+  .exit-option input[type="radio"]{display:none;}
+  .exit-dot{width:18px;height:18px;border-radius:50%;border:2px solid rgba(255,255,255,0.3);flex-shrink:0;}
+  .exit-option.selected .exit-dot{background:var(--red);border-color:var(--red);}
+  .exit-option span{font-size:0.88rem;color:var(--offwhite);}
+  .exit-textarea-wrap textarea{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.15);color:var(--white);min-height:80px;}
+  .exit-textarea-wrap textarea::placeholder{color:rgba(255,255,255,0.35);}
+  .exit-success{display:none;text-align:center;padding:1.5rem;}
+  .exit-success p{color:var(--offwhite);font-size:0.95rem;}
+  .exit-success .check{font-size:2rem;margin-bottom:0.5rem;}
+
+/* M4 */
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--navy:#1B2A4A;--red:#C0392B;--blue:#2E5F8A;--ltgrey:#F4F5F7;--white:#FFFFFF;--offwhite:#EEF1F5;--muted:#7A8499;--slate:#4A5568;--dark2:#243558;--radius:8px;}
+body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--slate);background:var(--ltgrey);}
+nav{position:sticky;top:0;z-index:100;background:var(--navy);border-bottom:3px solid var(--red);display:flex;align-items:center;}
+.nav-brand{padding:0 1.5rem;font-family:'Libre Baskerville',serif;font-size:1rem;color:var(--white);font-weight:700;white-space:nowrap;border-right:1px solid rgba(255,255,255,0.12);height:52px;display:flex;align-items:center;}
+.nav-brand span{color:var(--red);margin-left:6px;}
+.nav-links{display:flex;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;touch-action:pan-x;}
+.nav-links::-webkit-scrollbar{display:none;}
+.nav-links a{padding:0 1rem;height:52px;display:flex;align-items:center;color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.8rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;transition:color 0.15s;}
+.nav-links a:hover{color:var(--white);border-bottom-color:var(--red);}
+.nav-track{margin-left:auto;padding:0 1.5rem;font-size:0.75rem;color:var(--muted);white-space:nowrap;}
+.hero{background:var(--navy);padding:4rem 2rem 3rem;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;left:0;top:0;width:6px;height:100%;background:var(--red);}
+.hero-eyebrow{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;}
+.hero h1{font-family:'Libre Baskerville',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:var(--white);font-weight:700;line-height:1.2;max-width:720px;margin:0 auto 0.5rem;}
+.hero h1 span{color:var(--red);}
+.hero-sub{font-size:1rem;color:rgba(255,255,255,0.6);font-style:italic;max-width:560px;margin:0.75rem auto 0;}
+.hero-meta{display:flex;justify-content:center;gap:2rem;margin-top:2rem;flex-wrap:wrap;}
+.hero-meta-item{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.hero-meta-item .label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);}
+.hero-meta-item .value{font-size:0.9rem;font-weight:600;color:var(--white);}
+.mlo-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:2rem;padding:0 1rem;}
+.mlo-pill{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:5px 14px;font-size:0.78rem;color:rgba(255,255,255,0.7);}
+.section{max-width:860px;margin:0 auto;padding:3rem 1.5rem;}
+.section-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.75rem;}
+.section-num{width:36px;height:36px;border-radius:50%;background:var(--navy);color:var(--white);font-size:0.85rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.section-num.red{background:var(--red);}
+.section-num.blue{background:var(--blue);}
+.section-title{font-family:'Libre Baskerville',serif;font-size:1.4rem;color:var(--navy);font-weight:700;}
+.divider{height:1px;background:rgba(0,0,0,0.08);max-width:860px;margin:0 auto;}
+.bg-white-section{background:var(--white);}
+.bg-white-section .section{padding-top:2.5rem;padding-bottom:2.5rem;}
+.video-placeholder{background:var(--dark2);border-radius:var(--radius);aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;margin-bottom:1rem;border:2px dashed rgba(255,255,255,0.15);}
+.play-icon{width:60px;height:60px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;}
+.play-icon svg{margin-left:4px;}
+.video-label{color:var(--white);font-family:'Libre Baskerville',serif;font-size:1.1rem;text-align:center;max-width:400px;padding:0 1rem;}
+.video-sub{color:var(--muted);font-size:0.82rem;}
+.video-caption{font-size:0.82rem;color:var(--muted);font-style:italic;text-align:center;}
+.yt-card{background:var(--dark2);border-radius:var(--radius);padding:1.75rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;margin-bottom:1rem;}
+.yt-card-label{font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:0.4rem;}
+.yt-card-title{font-family:'Libre Baskerville',serif;font-size:1.05rem;color:var(--white);font-weight:700;margin-bottom:0.4rem;}
+.yt-card-desc{font-size:0.85rem;color:var(--offwhite);}
+.yt-btn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:white;padding:0.65rem 1.25rem;border-radius:var(--radius);font-size:0.88rem;font-weight:600;text-decoration:none;white-space:nowrap;}
+.reading-card{background:var(--white);border-radius:var(--radius);padding:1.5rem;margin-bottom:1rem;border-left:4px solid var(--blue);box-shadow:0 1px 4px rgba(0,0,0,0.06);}
+.reading-card.red-border{border-left-color:var(--red);}
+.reading-card .reading-type{font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--blue);margin-bottom:6px;}
+.reading-card.red-border .reading-type{color:var(--red);}
+.reading-card h3{font-family:'Libre Baskerville',serif;font-size:1rem;color:var(--navy);margin-bottom:0.5rem;font-weight:700;}
+.reading-card p{font-size:0.9rem;color:var(--slate);margin-bottom:0.75rem;line-height:1.6;}
+.reading-card a{display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;font-weight:600;color:var(--blue);text-decoration:none;}
+.reading-card a:hover{text-decoration:underline;}
+.essay-summary{background:var(--offwhite);border-radius:var(--radius);padding:1.25rem;margin-top:0.75rem;}
+.essay-summary h4{font-family:'Libre Baskerville',serif;font-size:0.9rem;color:var(--navy);margin-bottom:0.6rem;}
+.essay-summary ul{padding-left:1.25rem;display:flex;flex-direction:column;gap:0.4rem;}
+.essay-summary li{font-size:0.87rem;color:var(--slate);}
+.activity-card{background:var(--white);border-radius:var(--radius);padding:1.75rem;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin-bottom:1rem;}
+.activity-card h3{font-family:'Libre Baskerville',serif;font-size:1.05rem;color:var(--navy);margin-bottom:0.75rem;font-weight:700;}
+.activity-card p{font-size:0.9rem;color:var(--slate);line-height:1.7;margin-bottom:0.75rem;}
+.activity-card ul,.activity-card ol{padding-left:1.5rem;display:flex;flex-direction:column;gap:0.5rem;margin-bottom:0.75rem;}
+.activity-card li{font-size:0.9rem;color:var(--slate);line-height:1.6;}
+.activity-card li strong{color:var(--navy);}
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--navy);color:var(--white);font-size:0.78rem;font-weight:700;flex-shrink:0;margin-right:0.5rem;}
+.step-row{display:flex;align-items:flex-start;gap:0.75rem;margin-bottom:1.25rem;}
+.step-content h4{font-family:'Libre Baskerville',serif;font-size:0.95rem;color:var(--navy);margin-bottom:0.4rem;font-weight:700;}
+.step-content p{font-size:0.88rem;color:var(--slate);line-height:1.6;margin-bottom:0.4rem;}
+.step-content ul{padding-left:1.25rem;display:flex;flex-direction:column;gap:0.3rem;}
+.step-content li{font-size:0.85rem;color:var(--slate);}
+.discipline-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0.75rem;margin-top:1rem;}
+.discipline-card{background:var(--offwhite);border-radius:var(--radius);padding:0.9rem 1rem;}
+.discipline-card .field{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--blue);margin-bottom:0.25rem;}
+.discipline-card p{font-size:0.82rem;color:var(--slate);line-height:1.5;}
+textarea{width:100%;border:1.5px solid rgba(0,0,0,0.12);border-radius:var(--radius);padding:0.85rem 1rem;font-family:'Inter',sans-serif;font-size:0.9rem;color:var(--slate);resize:vertical;min-height:100px;transition:border-color 0.15s;background:var(--white);}
+textarea:focus{outline:none;border-color:var(--blue);}
+.btn{padding:0.65rem 1.5rem;border-radius:var(--radius);font-size:0.9rem;font-weight:600;cursor:pointer;border:none;transition:opacity 0.15s;}
+.btn-primary{background:var(--navy);color:var(--white);}
+.btn-primary:hover{background:var(--dark2);}
+.btn-secondary{background:var(--ltgrey);color:var(--slate);}
+.capstone-card{background:var(--navy);border-radius:var(--radius);padding:2rem;color:var(--white);}
+.capstone-card h3{font-family:'Libre Baskerville',serif;font-size:1.2rem;color:var(--white);margin-bottom:0.5rem;}
+.capstone-card .overview{font-size:0.92rem;color:var(--offwhite);margin-bottom:1.5rem;line-height:1.7;}
+.capstone-prompt{background:var(--dark2);border-radius:var(--radius);padding:1.25rem;margin-bottom:1rem;}
+.capstone-prompt h4{font-family:'Libre Baskerville',serif;font-size:0.95rem;color:var(--white);margin-bottom:0.5rem;}
+.capstone-prompt p{font-size:0.88rem;color:var(--offwhite);line-height:1.6;}
+.exit-ticket{background:var(--navy);border-radius:var(--radius);padding:2rem;}
+.exit-ticket h3{font-family:'Libre Baskerville',serif;font-size:1.1rem;color:var(--white);margin-bottom:0.5rem;}
+.exit-ticket .subtitle{font-size:0.88rem;color:var(--muted);margin-bottom:1.5rem;font-style:italic;}
+.survey-q{background:var(--white);border-radius:var(--radius);padding:1.5rem;margin-bottom:1rem;}
+.survey-q h4{font-family:'Libre Baskerville',serif;font-size:0.95rem;color:var(--navy);margin-bottom:1rem;font-weight:700;}
+.survey-options{display:flex;flex-direction:column;gap:0.5rem;}
+.survey-option{display:flex;align-items:flex-start;gap:0.75rem;padding:0.65rem 0.9rem;border:1.5px solid rgba(0,0,0,0.1);border-radius:var(--radius);cursor:pointer;transition:border-color 0.15s,background 0.15s;}
+.survey-option:hover{border-color:var(--blue);background:var(--offwhite);}
+.survey-option.selected{border-color:var(--blue);background:#EDF3F9;}
+.survey-option input{display:none;}
+.survey-dot{width:18px;height:18px;border-radius:50%;border:2px solid rgba(0,0,0,0.2);flex-shrink:0;margin-top:2px;}
+.survey-option.selected .survey-dot{background:var(--blue);border-color:var(--blue);}
+.survey-option span{font-size:0.88rem;color:var(--slate);line-height:1.5;}
+.survey-open{margin-top:0.5rem;}
+.survey-open textarea{min-height:70px;}
+.likert-row{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem;}
+.likert-btn{flex:1;min-width:100px;padding:0.6rem 0.75rem;border:1.5px solid rgba(0,0,0,0.1);border-radius:var(--radius);cursor:pointer;text-align:center;font-size:0.85rem;color:var(--slate);transition:all 0.15s;background:var(--white);}
+.likert-btn:hover{border-color:var(--blue);background:var(--offwhite);}
+.likert-btn.selected{background:var(--navy);border-color:var(--navy);color:var(--white);}
+.survey-success{display:none;text-align:center;padding:2rem;background:var(--white);border-radius:var(--radius);}
+.survey-success .check{font-size:2.5rem;margin-bottom:0.75rem;}
+.survey-success h3{font-family:'Libre Baskerville',serif;font-size:1.2rem;color:var(--navy);margin-bottom:0.5rem;}
+.survey-success p{font-size:0.92rem;color:var(--slate);}
+.course-complete{background:var(--navy);border-radius:var(--radius);padding:2.5rem;text-align:center;margin-top:2rem;}
+.course-complete h2{font-family:'Libre Baskerville',serif;font-size:1.6rem;color:var(--white);margin-bottom:0.75rem;}
+.course-complete p{font-size:1rem;color:var(--offwhite);max-width:560px;margin:0 auto 1.5rem;}
+.course-complete .red-line{width:60px;height:3px;background:var(--red);margin:0 auto 1.5rem;}
+
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Capital Evolution <span>Faculty</span></div>
+  <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:0 1rem;height:52px;color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.8rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap;border-right:1px solid rgba(255,255,255,0.12);transition:color 0.15s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">
+    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+    Home
+  </a>
+  <div class="nav-links">
+    <a href="#m1-intro">M1: Intro</a>
+    <a href="#m1-readings">M1: Readings</a>
+    <a href="#m1-context">M1: Context</a>
+    <a href="#m1-terminology">M1: Terms</a>
+    <a href="#m1-quiz">M1: Quiz</a>
+    <a href="#m1-reflection">M1: Reflect</a>
+    <a href="#m1-exit">M1: Exit</a>
+    <a href="#m2-chapter" style="border-left:1px solid rgba(255,255,255,0.2);margin-left:0.5rem;padding-left:1.25rem;">↓ M2</a>
+    <a href="#m2-video">M2: Video</a>
+    <a href="#m2-readings">M2: Readings</a>
+    <a href="#m2-context">M2: Context</a>
+    <a href="#m2-matching">M2: Activity</a>
+    <a href="#m2-reflection">M2: Reflect</a>
+    <a href="#m2-exit">M2: Exit</a>
+    <a href="#m3-chapter" style="border-left:1px solid rgba(255,255,255,0.2);margin-left:0.5rem;padding-left:1.25rem;">↓ M3</a>
+    <a href="#m3-videos">M3: Videos</a>
+    <a href="#m3-readings">M3: Readings</a>
+    <a href="#m3-tenets">M3: Tenets</a>
+    <a href="#m3-quiz">M3: Quiz</a>
+    <a href="#m3-activity">M3: Activity</a>
+    <a href="#m3-exit">M3: Exit</a>
+    <a href="#m4-chapter" style="border-left:1px solid rgba(255,255,255,0.2);margin-left:0.5rem;padding-left:1.25rem;">↓ M4</a>
+    <a href="#m4-videos">M4: Videos</a>
+    <a href="#m4-readings">M4: Readings</a>
+    <a href="#m4-activity">M4: Activity</a>
+    <a href="#m4-capstone">M4: Capstone</a>
+    <a href="#m4-survey">M4: Survey</a>
+  </div>
+  <div class="nav-track">Complete Faculty Course</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Capital Evolution · Faculty Track · Module 1</div>
+  <h1>How We Got Here: <span>What Is Capitalism?</span></h1>
+  <p class="hero-sub">Trace the economic shifts that shaped the world your students are inheriting, and the assumptions your discipline carries.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="label">Estimated Time</span>
+      <span class="value">~60–75 min</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="label">Videos</span>
+      <span class="value">2</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="label">Readings</span>
+      <span class="value">2</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="label">Assessment</span>
+      <span class="value">Quiz + Reflection</span>
+    </div>
+  </div>
+  <div class="mlo-pills">
+    <span class="mlo-pill">MLO 1; Recognize the shift to neoliberalism</span>
+    <span class="mlo-pill">MLO 2; Shareholder primacy & Friedman Doctrine</span>
+    <span class="mlo-pill">MLO 3; Key economic concepts</span>
+    <span class="mlo-pill">MLO 4; Define capitalism in plain language</span>
+    <span class="mlo-pill">MLO 5; Trace assumptions in your discipline</span>
+  </div>
+</div>
+
+<!-- SECTION 1: INTRO VIDEO -->
+<div id="m1-intro">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2 class="section-title">Course Introduction & What Is Capitalism?</h2>
+    </div>
+    <div class="video-placeholder">
+      <div class="play-icon">
+        <svg width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      <div class="video-label">Shannon Donnelly; "What Is Capitalism?" & Course Intro</div>
+      <div class="video-sub">~10 min · YouTube embed coming</div>
+    </div>
+    <p class="video-caption">Shannon introduces the course, defines capitalism in plain language, and sets up the question that runs through all four modules: not capitalism yes or no, but which kind?</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 2: READINGS -->
+<div id="m1-readings" class="bg-white-section">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num blue">2</div>
+      <h2 class="section-title">Readings</h2>
+    </div>
+
+    <!-- Friedman -->
+    <div class="reading-card red-border">
+      <div class="reading-type">Primary Source · Required</div>
+      <h3>Milton Friedman: "The Social Responsibility of Business Is to Increase Its Profits"</h3>
+      <p><em>The New York Times Magazine, September 13, 1970</em></p>
+      <p>The essay that defined 50 years of corporate decision-making. Friedman argues that a corporate executive's only legitimate responsibility is to maximize profits for shareholders. Spending company money on social goals, he writes, is spending other people's money without their consent. This essay is the foundation of shareholder primacy; understand it before the course can complicate it.</p>
+      <div class="essay-summary">
+        <h4>What to watch for as you read</h4>
+        <ul>
+          <li>Friedman's core claim: only individuals have responsibilities, not corporations</li>
+          <li>His argument against CSR: executives who pursue social goals are "unelected public servants"</li>
+          <li>The nuance: Friedman does allow for long-term thinking and community investment within the profit mandate; it's his followers who stripped this out</li>
+          <li>The phrase "within the rules of the game". This is where Rule of Law enters the framework</li>
+        </ul>
+      </div>
+      <br>
+      <a href="https://www.enriquedans.com/wp-content/uploads/2019/08/friedman.pdf" target="_blank" rel="noopener">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59L7.76 14.83l1.41 1.41L19 5.41V9h2V3h-7z"/></svg>
+        Read the essay (PDF)
+      </a>
+    </div>
+
+    <!-- Frankenstein Economy -->
+    <div class="reading-card">
+      <div class="reading-type">Course Reading · Required</div>
+      <h3>Levine and MacBride: "The Frankenstein Economy"</h3>
+      <p><em>The International Economy, Summer 2025</em></p>
+      <p>The essay that frames the book. Levine and MacBride argue that neoliberal capitalism has mutated into something its architects didn't intend. A system still animated by the spirit of profit but no longer tethered to the social contract. They introduce Dynamic Capitalism as the emerging response.</p>
+      <div class="essay-summary">
+        <h4>Key arguments</h4>
+        <ul>
+          <li>Business has overtaken government as the dominant force in American society, and that's a problem even if business is competent</li>
+          <li>CEO pay rose 900%+ from 1978–2018; worker pay rose modestly. Middle-income households shrank from 62% to 43% of U.S. household income</li>
+          <li>The "free market" is free only for the powerful; winner-take-all industries have replaced competition</li>
+          <li>Dynamic Capitalism is "neither a revolution nor socialism. It's people remembering what made American capitalism great in the first place"</li>
+          <li>The old neoliberal model told us wealth would trickle down. Dynamic Capitalism tells us it must circulate</li>
+        </ul>
+      </div>
+      <br>
+      <a href="https://international-economy.com/TIE_Su25_LevineMacBride.pdf" target="_blank" rel="noopener">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59L7.76 14.83l1.41 1.41L19 5.41V9h2V3h-7z"/></svg>
+        Read the essay (PDF)
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 3: ECONOMIC CONTEXT PAGE -->
+<div id="m1-context">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2 class="section-title">Establishing Postwar Economic Norms</h2>
+    </div>
+
+    <div class="content-block">
+      <h3>Bretton Woods (1944): The Postwar Foundation</h3>
+      <p>In July 1944, representatives from 44 Allied nations met in Bretton Woods, New Hampshire and created the international monetary system that would govern the postwar world. The agreement established the U.S. dollar as the world's reserve currency, pegged to gold at $35 per ounce. All other currencies were pegged to the dollar, creating a stable exchange rate system that made international trade predictable and reliable.</p>
+      <p>Bretton Woods also created the International Monetary Fund (IMF) and the World Bank. It held until 1971 when President Nixon ended dollar-gold convertibility: the "Nixon shock"; effectively ending the system. Its legacy: 25 years of stable, coordinated international finance that underpinned the Golden Age.</p>
+    </div>
+
+    <div class="content-block">
+      <h3>The Golden Age (1945–1973): When the Ladder Worked</h3>
+      <p>The postwar period saw a broad consensus between government, labor, and business: when the economy grew, workers shared in it. Productivity grew at 3.3% per year on average; double the rate after 1973, and wages rose with it. The middle class expanded rapidly. New worker protections took hold: the 40-hour week, paid vacations, safety standards, minimum wage, and overtime.</p>
+      <p>A single factory job could carry a whole household: house, car, college, pension. That sounds almost made-up now. It was normal. The Golden Age wasn't golden for everyone; it excluded many Black, Indigenous, and immigrant communities, but it set mobility expectations that still echo in how your students think about what a degree and hard work should deliver.</p>
+    </div>
+
+    <div class="content-block">
+      <h3>The Friedman Doctrine and Shareholder Primacy: The Turn</h3>
+      <p>In 1970, Milton Friedman published his New York Times essay arguing that a corporation's only legitimate purpose is to maximize returns to shareholders. An executive who spends company money on social goals is, in Friedman's framing, spending other people's money without their consent.</p>
+      <p>Shareholder primacy became the operating system of American business. Jack Welch at GE took it to its logical extreme: fire the bottom 10% annually, 600+ acquisitions, stock up ~25%/year. Wall Street celebrated. Then it collapsed; SEC fine, removed from the Dow in 2018. He's now the cautionary tale.</p>
+    </div>
+
+    <div style="margin-top:1rem;">
+      <h3 style="font-family:'Libre Baskerville',serif;font-size:1rem;color:var(--navy);margin-bottom:0.75rem;font-weight:700;">Wall Street: "Greed Is Good" (1987)</h3>
+      <div style="background:var(--dark2);border-radius:var(--radius);padding:1.75rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;">
+        <div>
+          <div style="font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:0.4rem;">Pop-Culture Clip - 3 min</div>
+          <div style="font-family:'Libre Baskerville',serif;font-size:1.05rem;color:var(--white);font-weight:700;margin-bottom:0.4rem;">Wall Street: "Greed Is Good"</div>
+          <div style="font-size:0.85rem;color:var(--offwhite);">Gordon Gekko's speech is the cultural distillation of shareholder primacy. Use it as a discussion anchor: where does this logic lead, and what does the alternative look like?</div>
+        </div>
+        <a href="https://www.youtube.com/watch?v=VVxYOQS6ggk" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--red);color:white;padding:0.65rem 1.25rem;border-radius:var(--radius);font-size:0.88rem;font-weight:600;text-decoration:none;white-space:nowrap;">
+          <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          Watch on YouTube
+        </a>
+      </div>
+    </div>
+
+    <div style="margin-top:1rem;">
+      <h3 style="font-family:'Libre Baskerville',serif;font-size:1rem;color:var(--navy);margin-bottom:0.75rem;font-weight:700;">Neoliberalism Explainer</h3>
+      <div style="background:var(--dark2);border-radius:var(--radius);padding:1.75rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;">
+        <div>
+          <div style="font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:0.4rem;">Explainer Video</div>
+          <div style="font-family:'Libre Baskerville',serif;font-size:1.05rem;color:var(--white);font-weight:700;margin-bottom:0.4rem;">Neoliberalism Explained</div>
+          <div style="font-size:0.85rem;color:var(--offwhite);">A short, accessible explainer on neoliberalism for faculty who want a second take before the quiz or to share with students as a primer.</div>
+        </div>
+        <a href="https://youtu.be/BwcX4izCS4c?si=D3LZGVZmoeM3Ppty" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--red);color:white;padding:0.65rem 1.25rem;border-radius:var(--radius);font-size:0.88rem;font-weight:600;text-decoration:none;white-space:nowrap;">
+          <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          Watch on YouTube
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 4: TERMINOLOGY -->
+<div id="m1-terminology" class="bg-white-section">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num blue">4</div>
+      <h2 class="section-title">Key Terms</h2>
+    </div>
+    <div class="term-grid">
+      <div class="term-card">
+        <div class="term">Bretton Woods</div>
+        <div class="definition">The 1944 international agreement that created a stable postwar monetary system anchored to the U.S. dollar. Held until 1971. Underpinned the Golden Age of coordinated global finance.</div>
+      </div>
+      <div class="term-card">
+        <div class="term">The Golden Age (1945–1973)</div>
+        <div class="definition">The postwar stretch of broad wage growth, expanding public investment, and a growing middle class, when productivity gains were widely shared across workers, owners, and communities.</div>
+      </div>
+      <div class="term-card">
+        <div class="term">Shareholder Primacy</div>
+        <div class="definition">The idea that a corporation's one legitimate purpose is maximizing returns to shareholders. All other considerations; workers, communities, environment; are secondary at best.</div>
+      </div>
+      <div class="term-card">
+        <div class="term">The Friedman Doctrine</div>
+        <div class="definition">Milton Friedman's 1970 argument that the social responsibility of business is to increase its profits. The ideological foundation of shareholder primacy. Note: Friedman was more nuanced than his followers.</div>
+      </div>
+      <div class="term-card">
+        <div class="term">Neoliberalism</div>
+        <div class="definition">A policy framework built on free markets, limited government, deregulation, and privatization. Made powerful by Reagan and Thatcher in the 1980s; adopted across the political spectrum by the 1990s.</div>
+      </div>
+      <div class="term-card">
+        <div class="term">Rule of Law</div>
+        <div class="definition">The foundational tenet underlying all of Dynamic Capitalism. That markets only work when everyone plays by the same rules, enforced fairly. Friedman himself included this: "within the rules of the game."</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 5: WRAP-UP VIDEO -->
+<div id="m1-wrapup">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num red">5</div>
+      <h2 class="section-title">Wrap-Up; So What?</h2>
+    </div>
+    <div class="video-placeholder">
+      <div class="play-icon">
+        <svg width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      <div class="video-label">Shannon Donnelly; Instructor Wrap-Up</div>
+      <div class="video-sub">~3–5 min · YouTube embed coming</div>
+    </div>
+    <p class="video-caption">Shannon bridges Module 1 to Module 2. What the Golden Age built, what unraveled, and why it matters that you're teaching in the aftermath.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 6: QUIZ -->
+<div id="m1-quiz" class="bg-white-section">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num blue">6</div>
+      <h2 class="section-title">Quiz 1; Key Terms in Plain Language</h2>
+    </div>
+
+    <div class="quiz-container">
+      <div class="quiz-progress">
+        <span class="quiz-q-num" id="q-counter">Question 1 of 5</span>
+        <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="q-progress" style="width:20%"></div></div>
+        <span class="quiz-q-num" id="q-score-live">0 / 5</span>
+      </div>
+
+      <!-- Q1 -->
+      <div class="quiz-question active" data-q="0" data-correct="1">
+        <h3>The Bretton Woods agreement (1944) was significant primarily because it:</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" data-i="0"><div class="opt-letter">A</div><div class="opt-text">Established the United Nations as the primary global peacekeeping body</div></div>
+          <div class="quiz-option" data-i="1"><div class="opt-letter">B</div><div class="opt-text">Created a stable international monetary system anchored to the U.S. dollar</div></div>
+          <div class="quiz-option" data-i="2"><div class="opt-letter">C</div><div class="opt-text">Transferred control of European economies to American corporations</div></div>
+          <div class="quiz-option" data-i="3"><div class="opt-letter">D</div><div class="opt-text">Eliminated tariffs between allied nations to boost postwar trade</div></div>
+        </div>
+        <div class="quiz-feedback correct" id="fb-0-correct">Correct. Bretton Woods created the dollar-pegged international monetary system that enabled stable postwar trade and underpinned the Golden Age.</div>
+        <div class="quiz-feedback incorrect" id="fb-0-incorrect">Not quite. Bretton Woods was an international monetary agreement; it created a stable system of exchange rates anchored to the U.S. dollar, not a military or trade body.</div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="quiz-question" data-q="1" data-correct="1">
+        <h3>The postwar "Golden Age" of capitalism (roughly 1945–1973) was characterized by:</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" data-i="0"><div class="opt-letter">A</div><div class="opt-text">Rapid deregulation of financial markets and rising corporate profits</div></div>
+          <div class="quiz-option" data-i="1"><div class="opt-letter">B</div><div class="opt-text">Broad wage growth, expanding public investment, and a growing middle class</div></div>
+          <div class="quiz-option" data-i="2"><div class="opt-letter">C</div><div class="opt-text">Globalization of supply chains driven by technological innovation</div></div>
+          <div class="quiz-option" data-i="3"><div class="opt-letter">D</div><div class="opt-text">Declining union membership and increasing shareholder returns</div></div>
+        </div>
+        <div class="quiz-feedback correct" id="fb-1-correct">Correct. The Golden Age was defined by broad wage growth and public investment; productivity and wages rose together. Options C and D describe the post-1973 neoliberal era, not the Golden Age.</div>
+        <div class="quiz-feedback incorrect" id="fb-1-incorrect">Not quite. Deregulation, globalization, and declining unions are all features of the neoliberal era after 1973: the opposite of the Golden Age. The Golden Age was characterized by broad wage growth and expanding public investment.</div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="quiz-question" data-q="2" data-correct="1">
+        <h3>Which sequence best describes the shift in dominant economic thinking in the United States during the second half of the 20th century?</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" data-i="0"><div class="opt-letter">A</div><div class="opt-text">Neoliberalism → Bretton Woods → shareholder primacy → postwar consensus</div></div>
+          <div class="quiz-option" data-i="1"><div class="opt-letter">B</div><div class="opt-text">Postwar consensus built on shared growth and public investment, followed by a shift toward neoliberalism including deregulation, privatization, and market-first policy</div></div>
+          <div class="quiz-option" data-i="2"><div class="opt-letter">C</div><div class="opt-text">A steady move toward greater government control of markets and redistribution of corporate profits</div></div>
+          <div class="quiz-option" data-i="3"><div class="opt-letter">D</div><div class="opt-text">Postwar instability caused by union power, corrected by market reforms that restored broad prosperity</div></div>
+        </div>
+        <div class="quiz-feedback correct" id="fb-2-correct">Correct. The shift ran from postwar consensus (shared growth, public investment) to neoliberalism (deregulation, privatization, market-first). Option D is a common misreading that frames neoliberalism as a correction rather than a turn.</div>
+        <div class="quiz-feedback incorrect" id="fb-2-incorrect">Not quite. Option B captures the actual sequence: a postwar consensus of shared growth, followed by a turn toward neoliberal market-first thinking in the 1970s–80s. Option D's framing that neoliberalism "restored" prosperity is a distortion.</div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="quiz-question" data-q="3" data-correct="1">
+        <h3>According to Milton Friedman's 1970 argument, a corporate executive who voluntarily reduces profits to benefit the community is:</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" data-i="0"><div class="opt-letter">A</div><div class="opt-text">Demonstrating the kind of values-driven leadership that builds long-term trust</div></div>
+          <div class="quiz-option" data-i="1"><div class="opt-letter">B</div><div class="opt-text">Acting outside their proper role by spending shareholders' money on social goals</div></div>
+          <div class="quiz-option" data-i="2"><div class="opt-letter">C</div><div class="opt-text">Fulfilling a legal obligation under U.S. corporate law</div></div>
+          <div class="quiz-option" data-i="3"><div class="opt-letter">D</div><div class="opt-text">Practicing the kind of adaptive strategy that strengthens institutional resilience</div></div>
+        </div>
+        <div class="quiz-feedback correct" id="fb-3-correct">Correct. Friedman's argument is precisely this: an executive who diverts profits to social purposes is spending other people's money: the shareholders'; without their consent. It's the core of the Friedman Doctrine.</div>
+        <div class="quiz-feedback incorrect" id="fb-3-incorrect">Not quite. In Friedman's framing, voluntarily reducing profits for the community is spending shareholders' money on unauthorized purposes. He sees it as a violation of the executive's proper role, not a virtue.</div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="quiz-question" data-q="4" data-correct="2">
+        <h3>A publicly traded hospital system decides to close its rural clinics because they are unprofitable, despite community need. Which concept best explains the underlying logic driving that decision?</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" data-i="0"><div class="opt-letter">A</div><div class="opt-text">Bretton Woods monetary policy</div></div>
+          <div class="quiz-option" data-i="1"><div class="opt-letter">B</div><div class="opt-text">Keynesian demand management</div></div>
+          <div class="quiz-option" data-i="2"><div class="opt-letter">C</div><div class="opt-text">Shareholder primacy</div></div>
+          <div class="quiz-option" data-i="3"><div class="opt-letter">D</div><div class="opt-text">The Golden Age social contract</div></div>
+        </div>
+        <div class="quiz-feedback correct" id="fb-4-correct">Correct. Closing unprofitable clinics despite community need is the Friedman Doctrine applied to healthcare: the company's obligation is to shareholders, not to the communities it serves.</div>
+        <div class="quiz-feedback incorrect" id="fb-4-incorrect">Not quite. This decision reflects shareholder primacy: the company's obligation runs to its shareholders, not its community. Closing unprofitable services; regardless of social need; is the logic of maximizing returns. Bretton Woods and Keynesianism are monetary/demand frameworks, not corporate governance principles.</div>
+      </div>
+
+      <!-- Score screen -->
+      <div class="quiz-score" id="quiz-score">
+        <div class="score-num" id="score-display">0/5</div>
+        <div class="score-label">Quiz 1 Complete</div>
+        <div class="score-msg" id="score-msg"></div>
+        <br>
+        <button class="btn btn-secondary" onclick="resetQuiz()">Retake Quiz</button>
+      </div>
+
+      <div class="quiz-actions">
+        <button class="btn btn-secondary" id="btn-check" onclick="checkAnswer()" disabled>Check Answer</button>
+        <button class="btn btn-primary" id="btn-next" onclick="nextQuestion()" style="display:none">Next Question →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 7: REFLECTION -->
+<div id="m1-reflection">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num red">7</div>
+      <h2 class="section-title">Reflection; Your Discipline & Capitalism</h2>
+    </div>
+    <p style="margin-bottom:1.5rem; font-size:0.92rem; color:var(--slate);">Before we can examine how capitalism has evolved, it helps to surface the assumptions we already carry. This prompt asks you to slow down and examine ideas you may have absorbed long before this course; through your training, your field, or your professional culture.</p>
+
+    <div class="reflection-card">
+      <div class="reflection-part">
+        <h4>Part 1: Define it yourself</h4>
+        <p>In 2–3 sentences, define capitalism in your own words. Don't look it up; write what you actually think it means based on your experience and background. There is no wrong answer here.</p>
+        <textarea placeholder="Write your working definition of capitalism here..."></textarea>
+        <div class="reflection-note">This is your starting point, not a test. You'll return to this definition later in the course.</div>
+      </div>
+
+      <div class="reflection-part">
+        <h4>Part 2: Trace it back</h4>
+        <p>Reflect on your professional training and early career. Consider:</p>
+        <ul>
+          <li>What did your field teach you (explicitly or implicitly) about how businesses or institutions should operate?</li>
+          <li>What counts as "success" or "good work" in your discipline, and who or what benefits from that definition?</li>
+          <li>Where do you see shareholder primacy or market-first thinking show up in how your field talks about value, capital, or resources?</li>
+        </ul>
+        <textarea placeholder="Reflect on your professional training and what it taught you about value, success, and how institutions operate..."></textarea>
+      </div>
+
+      <div class="reflection-part">
+        <h4>Part 3: Name the tension</h4>
+        <p>Is there a gap between what your field says it values and how it actually operates economically? Describe it in a sentence or two.</p>
+        <textarea placeholder="Name the tension: the gap between stated values and economic reality in your discipline..."></textarea>
+        <div class="reflection-note">This tension is the thing Module 4 will ask you to bring into the classroom.</div>
+      </div>
+
+      <div style="display:flex; justify-content:flex-end; margin-top:1rem;">
+        <button class="btn btn-primary" onclick="saveReflection()">Save Reflection</button>
+      </div>
+      <div id="reflection-saved" style="display:none; text-align:right; margin-top:0.5rem; font-size:0.82rem; color:var(--muted);">✓ Saved locally to this browser</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 8: EXIT TICKET -->
+<div id="m1-exit">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2 class="section-title">Exit Ticket</h2>
+    </div>
+
+    <div class="exit-ticket">
+      <h3>Two quick questions before you move on</h3>
+
+      <div class="exit-question" id="exit-form">
+        <p><strong style="color:white;">Question 1; Clarity check</strong><br>Which concept from this module do you feel least confident about heading into Module 2?</p>
+        <div class="exit-options" id="exit-q1">
+          <label class="exit-option">
+            <input type="radio" name="exit1" value="bretton">
+            <div class="exit-dot"></div>
+            <span>Bretton Woods and the postwar economic order</span>
+          </label>
+          <label class="exit-option">
+            <input type="radio" name="exit1" value="shift">
+            <div class="exit-dot"></div>
+            <span>The shift from postwar consensus to neoliberalism</span>
+          </label>
+          <label class="exit-option">
+            <input type="radio" name="exit1" value="shareholder">
+            <div class="exit-dot"></div>
+            <span>Shareholder primacy and the Friedman Doctrine</span>
+          </label>
+          <label class="exit-option">
+            <input type="radio" name="exit1" value="discipline">
+            <div class="exit-dot"></div>
+            <span>How these ideas show up in my discipline</span>
+          </label>
+        </div>
+
+        <br>
+        <p><strong style="color:white;">Question 2; Relevance check</strong><br>Complete this sentence:</p>
+        <p style="font-style:italic; color:var(--offwhite);">"The idea from this module that is most relevant to my work as a faculty member is __________ because __________."</p>
+        <div class="exit-textarea-wrap">
+          <textarea id="exit-q2" placeholder="The idea from this module that is most relevant to my work as a faculty member is..."></textarea>
+        </div>
+
+        <div class="exit-submit">
+          <button class="btn btn-primary" onclick="submitExit()">Submit Exit Ticket</button>
+        </div>
+      </div>
+
+      <div class="exit-success" id="exit-success">
+        <div class="check">✓</div>
+        <p>Exit ticket submitted. You're ready for Module 2: The Golden Age of the Middle Class.</p>
+        <br>
+        <a href="#" style="color:var(--red); font-weight:600; font-size:0.9rem;">Continue to Module 2 →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── QUIZ LOGIC ──
+let currentQ = 0;
+let selected = null;
+let answered = false;
+let score = 0;
+const totalQ = 5;
+
+const questions = document.querySelectorAll('.quiz-question');
+const btnCheck = document.getElementById('btn-check');
+const btnNext  = document.getElementById('btn-next');
+
+function updateProgress() {
+  const pct = ((currentQ + 1) / totalQ) * 100;
+  document.getElementById('q-progress').style.width = pct + '%';
+  document.getElementById('q-counter').textContent = 'Question ' + (currentQ + 1) + ' of ' + totalQ;
+  document.getElementById('q-score-live').textContent = score + ' / ' + totalQ;
+}
+
+questions.forEach(q => {
+  q.querySelectorAll('.quiz-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      if (answered) return;
+      q.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected');
+      selected = parseInt(opt.dataset.i);
+      btnCheck.disabled = false;
+    });
+  });
+});
+
+function checkAnswer() {
+  if (selected === null || answered) return;
+  answered = true;
+  btnCheck.disabled = true;
+  btnNext.style.display = 'block';
+
+  const q = questions[currentQ];
+  const correct = parseInt(q.dataset.correct);
+  const opts = q.querySelectorAll('.quiz-option');
+
+  opts[correct].classList.add('correct');
+  if (selected !== correct) {
+    opts[selected].classList.add('incorrect');
+    q.querySelector('[id^="fb-' + currentQ + '-incorrect"]').style.display = 'block';
+  } else {
+    score++;
+    document.getElementById('q-score-live').textContent = score + ' / ' + totalQ;
+    q.querySelector('[id^="fb-' + currentQ + '-correct"]').style.display = 'block';
+  }
+
+  if (currentQ === totalQ - 1) {
+    btnNext.textContent = 'See Results';
+  }
+}
+
+function nextQuestion() {
+  if (currentQ < totalQ - 1) {
+    questions[currentQ].classList.remove('active');
+    currentQ++;
+    questions[currentQ].classList.add('active');
+    selected = null;
+    answered = false;
+    btnCheck.disabled = true;
+    btnNext.style.display = 'none';
+    updateProgress();
+  } else {
+    showScore();
+  }
+}
+
+function showScore() {
+  document.querySelectorAll('.quiz-question').forEach(q => q.style.display = 'none');
+  document.querySelector('.quiz-actions').style.display = 'none';
+  const scoreEl = document.getElementById('quiz-score');
+  scoreEl.style.display = 'block';
+  document.getElementById('score-display').textContent = score + '/' + totalQ;
+  const msgs = [
+    'Review the key terms section and try again: the concepts will click.',
+    'Good start. Review the terms you missed and try once more.',
+    'Solid. A few concepts to revisit before Module 2.',
+    'Strong work. You have a firm grasp of the Module 1 concepts.',
+    'Perfect score; you\'re ready to complicate everything in Module 2.'
+  ];
+  document.getElementById('score-msg').textContent = msgs[Math.min(score, 4)];
+  document.getElementById('q-progress').style.width = '100%';
+  document.getElementById('q-counter').textContent = 'Complete';
+}
+
+function resetQuiz() {
+  currentQ = 0; selected = null; answered = false; score = 0;
+  questions.forEach(q => {
+    q.style.display = '';
+    q.classList.remove('active');
+    q.querySelectorAll('.quiz-option').forEach(o => {
+      o.classList.remove('selected','correct','incorrect');
+    });
+    q.querySelectorAll('.quiz-feedback').forEach(f => f.style.display = 'none');
+  });
+  questions[0].classList.add('active');
+  document.getElementById('quiz-score').style.display = 'none';
+  document.querySelector('.quiz-actions').style.display = 'flex';
+  btnCheck.disabled = true;
+  btnNext.style.display = 'none';
+  btnNext.textContent = 'Next Question →';
+  updateProgress();
+  document.getElementById('q-score-live').textContent = '0 / 5';
+}
+
+updateProgress();
+
+// ── EXIT OPTION HIGHLIGHTING ──
+document.querySelectorAll('.exit-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    const name = opt.querySelector('input').name;
+    document.querySelectorAll(`input[name="${name}"]`).forEach(i => {
+      i.closest('.exit-option').classList.remove('selected');
+    });
+    opt.classList.add('selected');
+    opt.querySelector('input').checked = true;
+  });
+});
+
+// ── SUBMIT EXIT ──
+function submitExit() {
+  const q1 = document.querySelector('input[name="exit1"]:checked');
+  const q2 = document.getElementById('exit-q2').value.trim();
+  if (!q1 || !q2) {
+    alert('Please answer both questions before submitting.');
+    return;
+  }
+  document.getElementById('exit-form').style.display = 'none';
+  document.getElementById('exit-success').style.display = 'block';
+}
+
+// ── SAVE REFLECTION ──
+function saveReflection() {
+  document.getElementById('reflection-saved').style.display = 'block';
+}
+</script>
+
+
+<div id="m2-chapter" style="background:var(--navy);padding:2.5rem 2rem;text-align:center;border-top:4px solid var(--red);">
+  <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;">Capital Evolution · Faculty Track · Module 2</div>
+  <div style="font-family:'Libre Baskerville',serif;font-size:clamp(1.6rem,3vw,2.4rem);color:var(--white);font-weight:700;line-height:1.2;max-width:680px;margin:0 auto 0.75rem;">The Golden Age of the Middle Class <span style="color:var(--red);">(and Its End)</span></div>
+  <div style="font-size:0.95rem;color:rgba(255,255,255,0.65);font-style:italic;max-width:520px;margin:0 auto 1.5rem;">There was a stretch, in living memory, when the economic ladder worked the way we tell people it's supposed to.</div>
+  <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:8px;"><span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:5px 14px;font-size:0.78rem;color:rgba(255,255,255,0.8);">MLO 1; Golden Age characteristics</span><span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:5px 14px;font-size:0.78rem;color:rgba(255,255,255,0.8);">MLO 2; Growth and decline</span><span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:5px 14px;font-size:0.78rem;color:rgba(255,255,255,0.8);">MLO 3; Lasting contributions</span><span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:5px 14px;font-size:0.78rem;color:rgba(255,255,255,0.8);">MLO 4; Impacts on students</span></div>
+</div>
+<!-- SECTION 1: INTRO VIDEO -->
+<div id="m2-video">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2 class="section-title">Instructor Video; The Golden Age and Its Unraveling</h2>
+    </div>
+    <div class="video-placeholder">
+      <div class="play-icon"><svg width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      <div class="video-label">Shannon Donnelly; The Golden Age 1945–1973</div>
+      <div class="video-sub">~10 min · YouTube embed coming</div>
+    </div>
+    <p class="video-caption">Shannon covers who the Golden Age included (and didn't), what built it, what unraveled, and Jack Welch at GE as the cautionary tale of shareholder primacy at full scale.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 2: READINGS -->
+<div id="m2-readings" class="bg-white-section">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num blue">2</div>
+      <h2 class="section-title">Readings</h2>
+    </div>
+
+    <div class="reading-card red-border">
+      <div class="reading-type">Book Excerpt · Required</div>
+      <h3>Capital Evolution: Golden Age + Unraveling Chapters</h3>
+      <p><em>Levine & MacBride, Capital Evolution (December 2025)</em></p>
+      <p>The primary source for this module. Levine and MacBride trace the postwar compact between government, labor, and business, and the decade-by-decade unraveling after 1973. Read alongside the videos for the fullest picture of what was built and what was lost.</p>
+      <div class="essay-summary">
+        <h4>Key sections to focus on</h4>
+        <ul>
+          <li>Ch. 4: The labor-capital-government compact: the Treaty of Detroit, the GI Bill, ARPA, and the 73% Gallup trust figure</li>
+          <li>Ch. 7: "Golden for some, not all", who the era excluded and why naming that matters</li>
+          <li>Ch. 7: The wildcatter oilmen and the ideological turn from personal responsibility to individual freedom</li>
+          <li>Ch. 14: The Kodak vs. Apple jobs-per-revenue comparison and what it means for your students</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="reading-card">
+      <div class="reading-type">Blog Post · Seth Levine · Required</div>
+      <h3>More Capitalists, More Equity: Revisiting Dr. King's Economic Bill of Rights</h3>
+      <p><em>Seth Levine, January 2026</em></p>
+      <p>Levine and MacBride connect Dr. King's economic vision. A guaranteed meaningful job and wage for everyone, connected to the current moment. The bipartisan frustration with capitalism is not new, they argue. What's new is the opportunity to act through business rather than waiting for Congress. A readable, rhetorically strong piece that works well as a discussion anchor.</p>
+      <div class="essay-summary">
+        <h4>Key arguments</h4>
+        <ul>
+          <li>In the 1960s a child born into the bottom quarter had a 1-in-4 chance of reaching the top quarter; today it's 1 in 20</li>
+          <li>The average first-time homebuyer is now 41 years old</li>
+          <li>CEO pay rose 900% over 50 years; worker pay rose 12%</li>
+          <li>KKR's Pete Stavros and PayPal's Dan Schulman as examples of business leaders already building the alternative</li>
+          <li>"Ownership will deliver equality, and we must demand it"</li>
+        </ul>
+      </div>
+      <br>
+      <a href="https://sethlevine.com/archives/2026/01/mlk2026.html" target="_blank" rel="noopener">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59L7.76 14.83l1.41 1.41L19 5.41V9h2V3h-7z"/></svg>
+        Read the full post
+      </a>
+    </div>
+
+    <div class="reading-card">
+      <div class="reading-type">Article · Brookings Institution · Required</div>
+      <h3>Power and Radicalism: Building a Middle Class in the Digital Age</h3>
+      <p><em>Ryan Avent, The Economist / Brookings, January 2020</em></p>
+      <p>Avent traces how the Golden Age middle class was built through education, urbanization, labor organization, and radical public investment, and argues that rebuilding it in the digital age requires the same ambition. The middle class didn't happen on its own. It took decades of work. That's the lesson for what comes next.</p>
+      <div class="essay-summary">
+        <h4>Key arguments</h4>
+        <ul>
+          <li>The GI Bill, land-grant universities, the Morrill Act, and the Treaty of Detroit were not inevitable, someone fought for them</li>
+          <li>The 40-hour week became law because workers organized, not because employers chose generosity</li>
+          <li>The digital revolution requires the same radical reform of social infrastructure that industrialization demanded</li>
+          <li>"The creation of the American middle class…would not have been possible without a mobilized working class"</li>
+        </ul>
+      </div>
+      <br>
+      <a href="https://www.brookings.edu/articles/power-and-radicalism-building-a-middle-class-in-the-digital-age/" target="_blank" rel="noopener">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59L7.76 14.83l1.41 1.41L19 5.41V9h2V3h-7z"/></svg>
+        Read the full article
+      </a>
+    </div>
+
+    <div class="reading-card">
+      <div class="reading-type">Article · History.com · Background Reading</div>
+      <h3>Why We Work a 5-Day Workweek</h3>
+      <p><em>Dave Roos, History.com</em></p>
+      <p>The 40-hour week didn't arrive by accident. It took more than a century of labor organizing, wartime leverage, and ultimately an act of Congress (the Fair Labor Standards Act, 1938). Henry Ford adopted a 5-day week in 1926 not out of generosity but because mass production requires mass consumption; workers needed leisure time to buy things. That logic is a useful parallel to the Shared Prosperity tenet today.</p>
+      <div class="essay-summary">
+        <h4>Key facts</h4>
+        <ul>
+          <li>At the turn of the 20th century, most Americans worked 60+ hours a week</li>
+          <li>Ford adopted the 5-day week in 1926; other companies followed his lead</li>
+          <li>The 40-hour week became federal law in 1938 via the Fair Labor Standards Act</li>
+          <li>Frances Perkins, FDR's Secretary of Labor and first female cabinet member, was the driving force</li>
+        </ul>
+      </div>
+      <br>
+      <a href="https://www.history.com/articles/five-day-work-week-labor-movement" target="_blank" rel="noopener">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59L7.76 14.83l1.41 1.41L19 5.41V9h2V3h-7z"/></svg>
+        Read the article
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 3: CONTEXT -->
+<div id="m2-context">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2 class="section-title">What the Golden Age Built, and What It Left Behind</h2>
+    </div>
+
+    <div class="content-block">
+      <h3>Who the Golden Age included, and didn't</h3>
+      <p>Be direct about this: the prosperity was real, and it was unevenly shared. If you were Black, an immigrant, or a member of other marginalized communities, the era was often exclusionary and dangerous. Redlining denied Black families access to the GI Bill's homeownership benefits. Labor violence: the Ludlow and Elaine massacres; was part of the backdrop. The 40-hour week, when it came, didn't apply equally.</p>
+      <p>Hold both truths at once: the Golden Age functioned better for more people than today's economy does, and it still left many out. Teaching it honestly means naming that; not to diminish what was built, but to understand why the next version has to be built differently.</p>
+    </div>
+
+    <div class="content-block">
+      <h3>What it built that we still move through</h3>
+      <p>The Golden Age didn't just grow the economy; it built the institutions your students still navigate. The GI Bill created the first generation of college-educated, home-owning working-class Americans. The Interstate Highway System connected the country. Federal R&D at ~10% of the budget; more than the rest of the world combined; funded ARPA, which became the internet. Social Security turned "getting old" from a financial catastrophe into a manageable life stage.</p>
+      <p>For faculty: a lot of what your discipline assumes about mobility, degrees, and what a career is supposed to deliver was built right here. The expectations your students carry into your classroom. That a degree leads somewhere, that hard work pays off; are Golden Age expectations. Understanding where they came from is part of understanding why they feel increasingly undeliverable.</p>
+    </div>
+
+    <div class="content-block">
+      <h3>The Cautionary Tale: Jack Welch at GE</h3>
+      <p>Welch became CEO of GE in 1981 and ran shareholder primacy to its logical extreme. He fired the bottom 10% of his workforce every year as a matter of principle; earning the nickname "Neutron Jack" because he cleared people out and left the buildings standing. He completed 600+ acquisitions and cut around 250,000 jobs. The stock rose ~25% annually. Wall Street called him the greatest CEO of his generation.</p>
+      <p>Then the house of cards collapsed. GE paid a major SEC fine for accounting fraud. It was removed from the Dow Jones in 2018 after decades as a flagship American company. Welch is now the textbook cautionary tale: the full picture of what the Friedman Doctrine looks like when someone actually follows it all the way through.</p>
+      <p>The contrast with GE's earlier era is instructive: before Welch, GE's mission statement talked about the "balanced best interest of all"; customers, employees, shareholders, and the community. Welch threw that out. What we lost between those two versions of GE is the story of what changed after 1973.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 4: SUPPORTING VIDEOS -->
+<div id="m2-videos" class="bg-white-section">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num blue">4</div>
+      <h2 class="section-title">Supporting Videos</h2>
+    </div>
+
+    <!-- America's Burning -->
+    <div style="margin-bottom:1.75rem;">
+      <h3 style="font-family:'Libre Baskerville',serif; font-size:1rem; color:var(--navy); margin-bottom:0.75rem; font-weight:700;">America's Burning; Mobility Collapse Stats</h3>
+      <div style="background:var(--dark2); border-radius:var(--radius); padding:1.75rem; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; flex-wrap:wrap;">
+        <div>
+          <div style="font-size:0.7rem; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); margin-bottom:0.4rem;">Documentary</div>
+          <div style="font-family:'Libre Baskerville',serif; font-size:1.05rem; color:var(--white); font-weight:700; margin-bottom:0.4rem;">America's Burning</div>
+          <div style="font-size:0.85rem; color:var(--offwhite);">~10 min · A data-driven look at the collapse of economic mobility: the statistics behind the coin flip your students face.</div>
+        </div>
+        <a href="https://www.youtube.com/watch?v=py_ANtmLB9o" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; background:var(--red); color:white; padding:0.65rem 1.25rem; border-radius:var(--radius); font-size:0.88rem; font-weight:600; text-decoration:none; white-space:nowrap;">
+          <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          Watch on YouTube
+        </a>
+      </div>
+    </div>
+
+    <!-- The Good Place -->
+    <div style="margin-bottom:1.75rem;">
+      <h3 style="font-family:'Libre Baskerville',serif; font-size:1rem; color:var(--navy); margin-bottom:0.75rem; font-weight:700;">The Good Place; "The Point System Is Broken"</h3>
+      <div style="background:var(--dark2); border-radius:var(--radius); padding:1.75rem; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; flex-wrap:wrap;">
+        <div>
+          <div style="font-size:0.7rem; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); margin-bottom:0.4rem;">Pop-Culture Clip · ~3 min</div>
+          <div style="font-family:'Libre Baskerville',serif; font-size:1.05rem; color:var(--white); font-weight:700; margin-bottom:0.4rem;">The Good Place; "The Point System Is Broken"</div>
+          <div style="font-size:0.85rem; color:var(--offwhite);">Michael explains why the point system hasn't worked for centuries. A sharp emotional anchor for the neoliberalism critique. Use it to open a discussion about how systems that seemed fair can produce unfair outcomes at scale.</div>
+        </div>
+        <a href="https://www.youtube.com/watch?v=R8m_5HDZF7w" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; background:var(--red); color:white; padding:0.65rem 1.25rem; border-radius:var(--radius); font-size:0.88rem; font-weight:600; text-decoration:none; white-space:nowrap;">
+          <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          Watch on YouTube
+        </a>
+      </div>
+    </div>
+
+    <!-- Crash Course New Deal -->
+    <div style="margin-bottom:1.75rem;">
+      <h3 style="font-family:'Libre Baskerville',serif; font-size:1rem; color:var(--navy); margin-bottom:0.75rem; font-weight:700;">Crash Course History; The New Deal</h3>
+      <div style="background:var(--dark2); border-radius:var(--radius); padding:1.75rem; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; flex-wrap:wrap;">
+        <div>
+          <div style="font-size:0.7rem; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); margin-bottom:0.4rem;">Crash Course US History #34</div>
+          <div style="font-family:'Libre Baskerville',serif; font-size:1.05rem; color:var(--white); font-weight:700; margin-bottom:0.4rem;">The New Deal</div>
+          <div style="font-size:0.85rem; color:var(--offwhite);">~14 min · Background context on the New Deal policies that set the stage for the Golden Age.</div>
+        </div>
+        <a href="https://www.youtube.com/watch?v=6bMq9Ek6jnA" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; background:var(--red); color:white; padding:0.65rem 1.25rem; border-radius:var(--radius); font-size:0.88rem; font-weight:600; text-decoration:none; white-space:nowrap;">
+          <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          Watch on YouTube
+        </a>
+      </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div>
+      <h3 style="font-family:'Libre Baskerville',serif; font-size:1rem; color:var(--navy); margin-bottom:0.75rem; font-weight:700;">Instructor Wrap-Up; Bridge to Module 3</h3>
+      <div class="video-placeholder">
+        <div class="play-icon"><svg width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="video-label">Shannon Donnelly; Shareholder vs. Stakeholder</div>
+        <div class="video-sub">~3–5 min · YouTube embed coming</div>
+      </div>
+      <p class="video-caption">Shannon bridges from the unraveling to Module 3: the shareholder vs. stakeholder framing and why Dynamic Capitalism is the response.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 5: MATCHING ACTIVITY -->
+<div id="m2-matching">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num red">5</div>
+      <h2 class="section-title">Activity; Golden Age: Growth or Decline?</h2>
+    </div>
+
+    <p class="matching-intro">Below is a list of 10 factors that shaped the postwar U.S. economy. Drag each one into the correct column; was it a driver of the Golden Age's <strong>growth</strong>, or a factor in its <strong>decline</strong>? You can also use the buttons on mobile.</p>
+
+    <div class="factor-bank" id="m2-factor-bank">
+      <div class="factor-item" draggable="true" data-correct="growth" data-id="f1">
+        <span class="drag-handle">⠿</span> Expansion of labor union membership and collective bargaining
+      </div>
+      <div class="factor-item" draggable="true" data-correct="growth" data-id="f2">
+        <span class="drag-handle">⠿</span> The GI Bill and broad access to higher education and homeownership
+      </div>
+      <div class="factor-item" draggable="true" data-correct="growth" data-id="f3">
+        <span class="drag-handle">⠿</span> Bretton Woods providing stable international currency exchange
+      </div>
+      <div class="factor-item" draggable="true" data-correct="growth" data-id="f4">
+        <span class="drag-handle">⠿</span> Federal investment in infrastructure including the Interstate Highway System
+      </div>
+      <div class="factor-item" draggable="true" data-correct="growth" data-id="f5">
+        <span class="drag-handle">⠿</span> Rising productivity shared broadly across wage earners
+      </div>
+      <div class="factor-item" draggable="true" data-correct="decline" data-id="f6">
+        <span class="drag-handle">⠿</span> The 1973 oil shock and stagflation
+      </div>
+      <div class="factor-item" draggable="true" data-correct="decline" data-id="f7">
+        <span class="drag-handle">⠿</span> Globalization shifting manufacturing jobs overseas
+      </div>
+      <div class="factor-item" draggable="true" data-correct="decline" data-id="f8">
+        <span class="drag-handle">⠿</span> Financial deregulation and the rise of shareholder primacy
+      </div>
+      <div class="factor-item" draggable="true" data-correct="decline" data-id="f9">
+        <span class="drag-handle">⠿</span> Jack Welch's "Neutron Jack" era of mass layoffs and outsourcing at GE
+      </div>
+      <div class="factor-item" draggable="true" data-correct="decline" data-id="f10">
+        <span class="drag-handle">⠿</span> Declining union membership and stagnating wages for middle-income workers
+      </div>
+    </div>
+
+    <div class="matching-grid">
+      <div class="matching-col">
+        <div class="matching-col-header growth">✓ Growth; Drivers of the Golden Age</div>
+        <div class="matching-drop-zone" id="m2-zone-growth" data-zone="growth"></div>
+      </div>
+      <div class="matching-col">
+        <div class="matching-col-header decline">↓ Decline; Factors in the Unraveling</div>
+        <div class="matching-drop-zone" id="m2-zone-decline" data-zone="decline"></div>
+      </div>
+    </div>
+
+    <div class="matching-check">
+      <button class="btn btn-primary" onclick="checkMatching2()">Check My Answers</button>
+      <button class="btn btn-secondary" onclick="resetMatching2()">Reset</button>
+      <span class="matching-feedback" id="m2-matching-feedback"></span>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 6: REFLECTION -->
+<div id="m2-reflection" class="bg-white-section">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num blue">6</div>
+      <h2 class="section-title">Write-Up; What the Golden Age Built</h2>
+    </div>
+    <p style="margin-bottom:1.5rem; font-size:0.92rem; color:var(--slate);">The postwar Golden Age didn't just produce economic growth; it built institutions, expectations, and pathways that many of us still navigate today. This write-up asks you to trace those contributions forward into your own professional context.</p>
+
+    <div class="reflection-card">
+      <div class="reflection-part">
+        <h4>The Prompt</h4>
+        <p>In approximately 300 words, respond to the following:</p>
+        <p>Choose one lasting contribution of the Golden Age; whether in higher education, labor, infrastructure, economic mobility, or your own field, and describe where you still see its influence today. Consider:</p>
+        <ul>
+          <li>How did Golden Age investments in education, wages, or public institutions shape the profession or discipline you work in?</li>
+          <li>What did students from that era expect from a college degree or career path, and how do those expectations still echo in your classroom or department today?</li>
+          <li>Where do you see the foundation the Golden Age built, even if it looks different now than it did then?</li>
+        </ul>
+      </div>
+      <div class="reflection-part">
+        <h4>What We're Looking For</h4>
+        <p>A specific, grounded response that connects at least one Golden Age policy or condition to something concrete and visible in your field, your students' lives, or your institution today. This is not a summary of the module; it's your analysis, from your discipline.</p>
+      </div>
+      <div class="reflection-part" style="border-bottom:none; padding-bottom:0;">
+        <h4>Your Response</h4>
+        <textarea id="m2-reflection-text" placeholder="Write your 300-word response here..." oninput="updateWordCount2(this)"></textarea>
+        <div class="word-count" id="m2-word-count">0 / ~300 words</div>
+      </div>
+      <div style="display:flex; justify-content:flex-end; margin-top:1rem;">
+        <button class="btn btn-primary" onclick="saveReflection2()">Save Response</button>
+      </div>
+      <div id="m2-reflection-saved" style="display:none; text-align:right; margin-top:0.5rem; font-size:0.82rem; color:var(--muted);">✓ Saved locally to this browser</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 7: EXIT TICKET -->
+<div id="m2-exit">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2 class="section-title">Exit Ticket</h2>
+    </div>
+    <div class="exit-ticket">
+      <h3>Two quick questions before Module 3</h3>
+      <div id="m2-exit-form">
+        <div class="exit-question">
+          <p><strong style="color:white;">Question 1; Clarity check</strong><br>Which of the following best describes a lasting contribution of the Golden Age that is still visible in American institutional life today?</p>
+          <div class="exit-options">
+            <label class="exit-option">
+              <input type="radio" name="m2-exit1" value="a">
+              <div class="exit-dot"></div>
+              <span>The deregulation of financial markets that enabled broad economic growth</span>
+            </label>
+            <label class="exit-option">
+              <input type="radio" name="m2-exit1" value="b">
+              <div class="exit-dot"></div>
+              <span>Public investments in education, labor standards, and infrastructure that expanded the middle class</span>
+            </label>
+            <label class="exit-option">
+              <input type="radio" name="m2-exit1" value="c">
+              <div class="exit-dot"></div>
+              <span>The shift toward shareholder primacy that stabilized corporate governance</span>
+            </label>
+            <label class="exit-option">
+              <input type="radio" name="m2-exit1" value="d">
+              <div class="exit-dot"></div>
+              <span>The globalization of supply chains that created new job opportunities</span>
+            </label>
+          </div>
+        </div>
+        <div class="exit-question">
+          <p><strong style="color:white;">Question 2; Relevance check</strong></p>
+          <p style="font-style:italic; color:var(--offwhite);">"One way the Golden Age still shapes my students' expectations, or my discipline's assumptions; is __________."</p>
+          <div class="exit-textarea-wrap">
+            <textarea id="m2-exit-q2" placeholder="Complete the sentence..."></textarea>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:flex-end; margin-top:1rem;">
+          <button class="btn btn-primary" onclick="submitExit2()">Submit Exit Ticket</button>
+        </div>
+      </div>
+      <div class="exit-success" id="m2-exit-success">
+        <div class="check">✓</div>
+        <p>Exit ticket submitted. You're ready for Module 3: What Is Dynamic Capitalism & Why We Need It.</p>
+        <br>
+        <a href="#" style="color:var(--red); font-weight:600; font-size:0.9rem;">Continue to Module 3 →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── DRAG AND DROP MATCHING ──
+let draggedItem = null;
+
+document.querySelectorAll('.factor-item').forEach(item => {
+  item.addEventListener('dragstart', e => {
+    draggedItem = item;
+    setTimeout(() => item.classList.add('dragging'), 0);
+  });
+  item.addEventListener('dragend', () => {
+    item.classList.remove('dragging');
+    draggedItem = null;
+  });
+});
+
+document.querySelectorAll('.matching-drop-zone').forEach(zone => {
+  zone.addEventListener('dragover', e => {
+    e.preventDefault();
+    zone.classList.add('drag-over');
+  });
+  zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.classList.remove('drag-over');
+    if (draggedItem) {
+      // Remove from bank or other zone
+      draggedItem.remove();
+      // Add to zone
+      const clone = draggedItem.cloneNode(true);
+      clone.draggable = true;
+      clone.dataset.zone = zone.dataset.zone;
+      if (zone.dataset.zone === 'growth') clone.classList.add('placed-growth');
+      else clone.classList.add('placed-decline');
+
+      // Re-attach drag events
+      clone.addEventListener('dragstart', e2 => {
+        draggedItem = clone;
+        clone.classList.remove('placed-growth','placed-decline','correct','incorrect');
+        setTimeout(() => clone.classList.add('dragging'), 0);
+      });
+      clone.addEventListener('dragend', () => { clone.classList.remove('dragging'); draggedItem = null; });
+
+      zone.appendChild(clone);
+      document.getElementById('m2-matching-feedback').textContent = '';
+      clone.querySelectorAll('.factor-item').forEach(f => f.classList.remove('correct','incorrect'));
+    }
+  });
+});
+
+function checkMatching2() {
+  const growthZone  = document.getElementById('m2-zone-growth');
+  const declineZone = document.getElementById('m2-zone-decline');
+  let correct = 0, total = 0;
+
+  [growthZone, declineZone].forEach(zone => {
+    zone.querySelectorAll('.factor-item').forEach(item => {
+      total++;
+      item.classList.remove('correct','incorrect','placed-growth','placed-decline');
+      if (item.dataset.correct === zone.dataset.zone) {
+        item.classList.add('correct'); correct++;
+      } else {
+        item.classList.add('incorrect');
+      }
+    });
+  });
+
+  if (total === 0) {
+    document.getElementById('m2-matching-feedback').textContent = 'Drag some factors into the columns first.';
+    return;
+  }
+
+  const msgs = [
+    `${correct} of ${total} correct.`,
+    total === 10 && correct === 10 ? ' Perfect. All ten placed correctly.' :
+    correct >= 8 ? ' Strong work. Review the highlighted items.' :
+    ' Review the red items and try again.'
+  ];
+  document.getElementById('m2-matching-feedback').textContent = msgs.join('');
+}
+
+function resetMatching2() {
+  const bank = document.getElementById('m2-factor-bank');
+  const growthZone  = document.getElementById('m2-zone-growth');
+  const declineZone = document.getElementById('m2-zone-decline');
+
+  // Move items back to bank
+  [...growthZone.querySelectorAll('.factor-item'), ...declineZone.querySelectorAll('.factor-item')].forEach(item => {
+    item.classList.remove('placed-growth','placed-decline','correct','incorrect','dragging');
+    item.removeAttribute('data-zone');
+    bank.appendChild(item);
+  });
+
+  document.getElementById('m2-matching-feedback').textContent = '';
+}
+
+// ── WORD COUNT ──
+function updateWordCount2(ta) {
+  const words = ta.value.trim() === '' ? 0 : ta.value.trim().split(/\s+/).length;
+  document.getElementById('m2-word-count').textContent = words + ' / ~300 words';
+}
+
+// ── SAVE REFLECTION ──
+function saveReflection2() {
+  document.getElementById('m2-reflection-saved').style.display = 'block';
+}
+
+// ── EXIT TICKET ──
+document.querySelectorAll('.exit-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    const name = opt.querySelector('input').name;
+    document.querySelectorAll(`input[name="${name}"]`).forEach(i => i.closest('.exit-option').classList.remove('selected'));
+    opt.classList.add('selected');
+    opt.querySelector('input').checked = true;
+  });
+});
+
+function submitExit2() {
+  const q1 = document.querySelector('input[name="m2-exit1"]:checked');
+  const q2 = document.getElementById('m2-exit-q2').value.trim();
+  if (!q1 || !q2) { alert('Please answer both questions before submitting.'); return; }
+  document.getElementById('m2-exit-form').style.display = 'none';
+  document.getElementById('m2-exit-success').style.display = 'block';
+}
+</script>
+<div id="m3-chapter" style="background:var(--navy);padding:2.5rem 2rem;text-align:center;border-top:4px solid var(--red);">
+  <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;">Capital Evolution · Faculty Track · Module 3</div>
+  <div style="font-family:'Libre Baskerville',serif;font-size:clamp(1.6rem,3vw,2.4rem);color:var(--white);font-weight:700;line-height:1.2;max-width:680px;margin:0 auto 0.75rem;">What Is Dynamic Capitalism <span style="color:var(--red);">& Why We Need It</span></div>
+  <div style="font-size:0.95rem;color:rgba(255,255,255,0.65);font-style:italic;max-width:520px;margin:0 auto 1.5rem;">Not socialism. Not ESG. A systemic framework for how markets should behave, from inside the market economy.</div>
+  <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:8px;"><span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:5px 14px;font-size:0.78rem;color:rgba(255,255,255,0.8);">MLO 1; Identify Dynamic Capitalism</span><span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:5px 14px;font-size:0.78rem;color:rgba(255,255,255,0.8);">MLO 2; The three tenets</span><span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:5px 14px;font-size:0.78rem;color:rgba(255,255,255,0.8);">MLO 3; Not socialism & Not ESG</span><span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:5px 14px;font-size:0.78rem;color:rgba(255,255,255,0.8);">MLO 4; Colorado & national examples</span></div>
+</div>
+<!-- SECTION 1: VIDEOS -->
+<div id="m3-videos">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2 class="section-title">Videos</h2>
+    </div>
+
+    <div style="margin-bottom:1.75rem;">
+      <h3 style="font-family:'Libre Baskerville',serif;font-size:1rem;color:var(--navy);margin-bottom:0.75rem;font-weight:700;">Seth Levine; Dynamic Capitalism Overview</h3>
+      <div class="video-placeholder">
+        <div class="play-icon"><svg width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="video-label">Seth Levine; What Is Dynamic Capitalism?</div>
+        <div class="video-sub">~10 min · YouTube embed coming</div>
+      </div>
+      <p class="video-caption">Seth introduces Dynamic Capitalism in his own words; why he wrote the book, what the three tenets are, how it differs from socialism and ESG, and what he wants it to change.</p>
+    </div>
+
+    <div style="margin-bottom:1.75rem;">
+      <h3 style="font-family:'Libre Baskerville',serif;font-size:1rem;color:var(--navy);margin-bottom:0.75rem;font-weight:700;">Reboot Chronicles; Where Capitalism Meets Purpose</h3>
+      <div class="yt-card">
+        <div>
+          <div class="yt-card-label">Podcast Interview · ~30 min</div>
+          <div class="yt-card-title">Where Capitalism Meets Purpose: Seth Levine on the New Entrepreneurial Era</div>
+          <div class="yt-card-desc">Seth in conversation on the Reboot Chronicles: the historical arc of neoliberalism, what Dynamic Capitalism is and isn't, and why entrepreneurship is the vehicle for the next evolution.</div>
+        </div>
+        <a href="https://www.youtube.com/watch?v=X10VVmVm2tk" target="_blank" rel="noopener" class="yt-btn">
+          <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          Watch on YouTube
+        </a>
+      </div>
+    </div>
+
+    <div style="margin-bottom:1.75rem;">
+      <h3 style="font-family:'Libre Baskerville',serif;font-size:1rem;color:var(--navy);margin-bottom:0.75rem;font-weight:700;">Shannon Donnelly; The Three Tenets in Practice</h3>
+      <div class="video-placeholder">
+        <div class="play-icon"><svg width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="video-label">Shannon Donnelly; Colorado & National Examples</div>
+        <div class="video-sub">~5 min · YouTube embed coming</div>
+      </div>
+      <p class="video-caption">Shannon walks through real businesses that embody each tenet; Sexy Pizza and CHI Overhead Doors for Shared Prosperity; CHIPS Act, Just Capital, and the Colorado Employee Ownership Office for Adaptive Institutions; Patagonia for Values-Driven Leadership.</p>
+    </div>
+
+    <div style="margin-bottom:1.75rem;">
+      <h3 style="font-family:'Libre Baskerville',serif;font-size:1rem;color:var(--navy);margin-bottom:0.75rem;font-weight:700;">Pop-Culture Foil; Wall Street: Greed is Good (1987)</h3>
+      <div class="yt-card">
+        <div>
+          <div class="yt-card-label">Pop-Culture Clip · ~3 min</div>
+          <div class="yt-card-title">Wall Street; "Greed is Good"</div>
+          <div class="yt-card-desc">Gordon Gekko's speech is the cultural distillation of shareholder primacy: the exact opposite of Dynamic Capitalism. Use it as a discussion anchor: where does this logic lead, and what does the alternative look like?</div>
+        </div>
+        <a href="https://www.youtube.com/watch?v=VVxYOQS6ggk" target="_blank" rel="noopener" class="yt-btn">
+          <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          Watch on YouTube
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-family:'Libre Baskerville',serif;font-size:1rem;color:var(--navy);margin-bottom:0.75rem;font-weight:700;">Shannon Donnelly; Wrap-Up & Bridge to Module 4</h3>
+      <div class="video-placeholder">
+        <div class="play-icon"><svg width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="video-label">Shannon Donnelly; Module 3 Wrap-Up</div>
+        <div class="video-sub">~3 min · YouTube embed coming</div>
+      </div>
+      <p class="video-caption">Shannon bridges to Module 4; Values-Driven Leadership as the linchpin tenet and Ryan's deep dive.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 2: READINGS -->
+<div id="m3-readings" class="bg-white-section">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num blue">2</div>
+      <h2 class="section-title">Readings</h2>
+    </div>
+
+    <div class="reading-card red-border">
+      <div class="reading-type">Primary Essay · Required</div>
+      <h3>Levine and MacBride: "The Next Evolution: How Dynamic Capitalism Can Rebuild Trust and the Middle Class"</h3>
+      <p><em>Porchlight / ChangeThis Essay</em></p>
+      <p>The core argument of the book in essay form. Levine and MacBride trace the collapse of shareholder primacy and make the case for Dynamic Capitalism as the emerging alternative; not a revolution, but an evolution that broadens ownership, realigns incentives, and rebuilds the trust that markets require to function.</p>
+      <div class="essay-summary">
+        <h4>Key arguments</h4>
+        <ul>
+          <li>The Business Roundtable's 2019 statement, led by Jamie Dimon, was the first crack in 50 years of shareholder-primacy dogma</li>
+          <li>Capitalism and democracy are siblings, when one falters, both do. Shareholder primacy strained this relationship almost to breaking</li>
+          <li>Dynamic Capitalism re-democratizes economic power by broadening ownership and re-anchoring business in community</li>
+          <li>PayPal, Patagonia, and Interface as early proof points that profit and purpose are not opposites</li>
+          <li>"Shareholders came first; workers, communities, and even customers came somewhere after. The logic was simple and seductive. For a time, it even appeared to work."</li>
+        </ul>
+      </div>
+      <br>
+      <a href="https://www.porchlightbooks.com/blogs/changethis/capital-evolution" target="_blank" rel="noopener">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59L7.76 14.83l1.41 1.41L19 5.41V9h2V3h-7z"/></svg>
+        Read the essay
+      </a>
+    </div>
+
+    <div class="reading-card">
+      <div class="reading-type">Podcast · Supporting</div>
+      <h3>Reboot Chronicles: "Where Capitalism Meets Purpose: Seth Levine on the New Entrepreneurial Era"</h3>
+      <p><em>Reboot Chronicles, January 2026</em></p>
+      <p>Seth in conversation, more accessible and personal than the essay. He walks through the historical arc from neoliberalism to Dynamic Capitalism, talks about why entrepreneurship is the vehicle for the next evolution, and gives concrete examples of what the framework looks like in practice. Good for faculty who want a second, less formal take on the argument before Module 3's activity.</p>
+      <div class="essay-summary">
+        <h4>Key points</h4>
+        <ul>
+          <li>Dynamic Capitalism is not anti-capitalism; it's a defense of capitalism itself</li>
+          <li>We are living in the age of neoliberalism, and its limitations are now impossible to ignore</li>
+          <li>Entrepreneurship rose during COVID as workers sought control. AI is creating the same opportunity</li>
+          <li>The next generation of builders can choose a different model from the start</li>
+        </ul>
+      </div>
+      <br>
+      <a href="https://rebootchronicles.com/where-capitalism-meets-purpose-seth-levine-on-the-new-entrepreneurial-era/" target="_blank" rel="noopener">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59L7.76 14.83l1.41 1.41L19 5.41V9h2V3h-7z"/></svg>
+        Read the full piece
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 3: THE TENETS -->
+<div id="m3-tenets">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2 class="section-title">The Three Tenets of Dynamic Capitalism</h2>
+    </div>
+
+    <p style="font-size:0.92rem;color:var(--slate);margin-bottom:1.5rem;line-height:1.7;">Dynamic Capitalism is built on three tenets; not a rejection of capitalism, but a framework for how markets should behave within a market economy. Each tenet is tested by the same rubric: is it <strong>structural</strong> (built into how the business works, not charity), <strong>long-term</strong> (stewardship over extraction), and <strong>authentic</strong> (costs something, not just PR)?</p>
+
+    <div class="tenet-grid">
+      <div class="tenet-card blue">
+        <div class="tenet-label">Tenet 1</div>
+        <h3>Shared Prosperity</h3>
+        <p>Economic structures and practices that distribute gains broadly, across workers, owners, and community, through how the business is built, not through charity. The heart of it: getting more people onto the equity side.</p>
+      </div>
+      <div class="tenet-card red">
+        <div class="tenet-label">Tenet 2</div>
+        <h3>Adaptive Institutions</h3>
+        <p>Government and institutions that flex, measure, and partner; keeping markets fair and working; rather than dominating or disappearing. Neither laissez-faire nor statist: the smallest imposition necessary to get the desired outcome.</p>
+      </div>
+      <div class="tenet-card navy">
+        <div class="tenet-label">Tenet 3</div>
+        <h3>Values-Driven Leadership</h3>
+        <p>Leaders who make decisions anchored in something beyond quarterly returns, who understand their license to operate comes from society as much as from shareholders. The linchpin: Tenets 1 and 2 only work if leaders choose to use them.</p>
+      </div>
+    </div>
+
+    <div class="throughline-banner">
+      <div class="throughline-label">The Throughline</div>
+      <div>
+        <div class="throughline-text">Rule of Law</div>
+        <div class="throughline-sub">The foundational condition all three tenets depend on; markets only work when everyone plays by the same rules, enforced fairly. Friedman himself included it: "within the rules of the game."</div>
+      </div>
+    </div>
+
+    <div style="margin-top:2rem;">
+      <h3 style="font-family:'Libre Baskerville',serif;font-size:1.05rem;color:var(--navy);margin-bottom:1rem;font-weight:700;">What It's Not</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div style="background:var(--white);border-radius:var(--radius);padding:1.25rem;box-shadow:0 1px 4px rgba(0,0,0,0.06);border-left:4px solid var(--red);">
+          <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--red);margin-bottom:0.4rem;">Not Socialism</div>
+          <p style="font-size:0.88rem;color:var(--slate);line-height:1.6;">Dynamic Capitalism operates within market structures and private ownership. It challenges how markets behave; not whether they exist. No government ownership of industry, no redistribution by fiat.</p>
+        </div>
+        <div style="background:var(--white);border-radius:var(--radius);padding:1.25rem;box-shadow:0 1px 4px rgba(0,0,0,0.06);border-left:4px solid var(--navy);">
+          <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--navy);margin-bottom:0.4rem;">Not ESG</div>
+          <p style="font-size:0.88rem;color:var(--slate);line-height:1.6;">ESG is a corporate measurement and reporting tool. A scoreboard. Dynamic Capitalism is a systemic framework for how economies and institutions are structured. One asks "how do we score?" The other asks "how do we build?"</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 4: CASE EXAMPLES -->
+<div id="m3-cases" class="bg-white-section">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num blue">4</div>
+      <h2 class="section-title">Case Examples; The Tenets in Action</h2>
+    </div>
+    <p style="font-size:0.92rem;color:var(--slate);margin-bottom:1.5rem;">These cases are covered in Shannon's video. Each is run through the same rubric: structural, long-term, authentic, or charity and PR?</p>
+
+    <div class="case-grid">
+      <div class="case-card">
+        <div class="case-tenet">Tenet 1 · Shared Prosperity</div>
+        <h4>Sexy Pizza (Denver)</h4>
+        <p>Local Denver pizza company known for employee-first, profit-sharing practices. A Colorado example to test the rubric out loud: is the gain-sharing structural and ongoing, or a one-time perk?</p>
+      </div>
+      <div class="case-card">
+        <div class="case-tenet">Tenet 1 · Shared Prosperity</div>
+        <h4>KKR / Pete Stavros & CHI Overhead Doors</h4>
+        <p>When CHI sold in 2022, the average worker received ~$175,000. Broad employee ownership built into KKR's model across 55+ portfolio companies. Not altruistic; it works, which is why it spreads.</p>
+      </div>
+      <div class="case-card red-top">
+        <div class="case-tenet">Tenet 2 · Adaptive Institutions</div>
+        <h4>CHIPS Act</h4>
+        <p>Federal investment to seed domestic semiconductor manufacturing. Government as early investor and enabler: the "fund foundational research, enable markets" idea in action. Good discussion prompt: adaptive or distorting?</p>
+      </div>
+      <div class="case-card red-top">
+        <div class="case-tenet">Tenet 2 · Adaptive Institutions</div>
+        <h4>Just Capital</h4>
+        <p>Nonprofit that ranks America's largest companies on worker, community, and environmental treatment; surveys ~10,000 people per year. Worker pay tops its measurement factors. The scoreboard that holds business accountable.</p>
+      </div>
+      <div class="case-card red-top">
+        <div class="case-tenet">Tenet 2 · Adaptive Institutions</div>
+        <h4>Colorado Employee Ownership Office</h4>
+        <p>A state office that helps businesses set up employee-ownership plans; lowering the biggest barrier: awareness andow-how. The book proposes this nationally; Colorado is the live local version.</p>
+      </div>
+      <div class="case-card navy-top">
+        <div class="case-tenet">Tenet 3 · Values-Driven Leadership</div>
+        <h4>Patagonia / Yvon Chouinard</h4>
+        <p>In 2022, the Chouinard family moved the entire company into a trust directing all profits to fighting climate change. "Earth is now our only shareholder." Values in the ownership structure itself; not a marketing campaign.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 5: QUIZ -->
+<div id="m3-quiz">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num red">5</div>
+      <h2 class="section-title">Quiz 3; What Is Dynamic Capitalism?</h2>
+    </div>
+
+    <div class="quiz-container">
+      <div class="quiz-progress">
+        <span class="quiz-q-num" id="m3-q-counter">Question 1 of 5</span>
+        <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="m3-q-progress" style="width:20%"></div></div>
+        <span class="quiz-q-num" id="m3-q-score-live">0 / 5</span>
+      </div>
+
+      <!-- Q1 -->
+      <div class="quiz-question active" data-q="0" data-correct="1">
+        <h3>Dynamic Capitalism is best described as:</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" data-i="0"><div class="opt-letter">A</div><div class="opt-text">A government-managed economic system that redistributes corporate profits to workers</div></div>
+          <div class="quiz-option" data-i="1"><div class="opt-letter">B</div><div class="opt-text">A framework in which businesses pursue shared prosperity, adaptive institutions, and values-driven leadership within a market economy</div></div>
+          <div class="quiz-option" data-i="2"><div class="opt-letter">C</div><div class="opt-text">A corporate reporting standard that measures environmental and social performance alongside financial returns</div></div>
+          <div class="quiz-option" data-i="3"><div class="opt-letter">D</div><div class="opt-text">A rejection of capitalism in favor of stakeholder-owned enterprises</div></div>
+        </div>
+        <div class="quiz-feedback correct">Correct. Dynamic Capitalism operates within a market economy and pursues the three tenets; it's not a rejection of capitalism but an evolution of it.</div>
+        <div class="quiz-feedback incorrect">Not quite. Dynamic Capitalism works inside markets and private ownership. Option C describes ESG; Option A describes socialism; Option D mischaracterizes the framework entirely.</div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="quiz-question" data-q="1" data-correct="2">
+        <h3>A regional hospital system restructures its executive compensation to tie bonuses to community health outcomes rather than quarterly earnings. This most directly reflects which tenet of Dynamic Capitalism?</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" data-i="0"><div class="opt-letter">A</div><div class="opt-text">Adaptive Institutions</div></div>
+          <div class="quiz-option" data-i="1"><div class="opt-letter">B</div><div class="opt-text">Shared Prosperity</div></div>
+          <div class="quiz-option" data-i="2"><div class="opt-letter">C</div><div class="opt-text">Values-Driven Leadership</div></div>
+          <div class="quiz-option" data-i="3"><div class="opt-letter">D</div><div class="opt-text">Shareholder Primacy</div></div>
+        </div>
+        <div class="quiz-feedback correct">Correct. Tying executive compensation to community health outcomes is a decision anchored in something beyond quarterly returns: the definition of Values-Driven Leadership.</div>
+        <div class="quiz-feedback incorrect">Not quite. This is Values-Driven Leadership; executive decisions visibly anchored in community outcomes rather than shareholder returns. Shared Prosperity is about distributing gains broadly; Adaptive Institutions is about government and policy frameworks.</div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="quiz-question" data-q="2" data-correct="2">
+        <h3>Which of the following best describes the Shared Prosperity tenet?</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" data-i="0"><div class="opt-letter">A</div><div class="opt-text">Leaders voluntarily adopting ethical codes of conduct in their organizations</div></div>
+          <div class="quiz-option" data-i="1"><div class="opt-letter">B</div><div class="opt-text">Government agencies regulating corporate behavior through environmental standards</div></div>
+          <div class="quiz-option" data-i="2"><div class="opt-letter">C</div><div class="opt-text">Economic structures and business practices that distribute gains broadly across workers, communities, and owners</div></div>
+          <div class="quiz-option" data-i="3"><div class="opt-letter">D</div><div class="opt-text">Institutional reforms that allow markets to respond more flexibly to economic disruption</div></div>
+        </div>
+        <div class="quiz-feedback correct">Correct. Shared Prosperity is about distributing gains through how the business is built; equity, profit-sharing, wages tied to productivity; not through charity or regulation.</div>
+        <div class="quiz-feedback incorrect">Not quite. Shared Prosperity is structural; gains distributed through how the business is built, not through leadership ethics (Tenet 3) or government regulation (Tenet 2). Option D describes Adaptive Institutions.</div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="quiz-question" data-q="3" data-correct="1">
+        <h3>A critic argues that Dynamic Capitalism is "just socialism with better branding." The most accurate response to that critique is:</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" data-i="0"><div class="opt-letter">A</div><div class="opt-text">Dynamic Capitalism does advocate for government ownership of key industries, but within democratic limits</div></div>
+          <div class="quiz-option" data-i="1"><div class="opt-letter">B</div><div class="opt-text">Dynamic Capitalism operates within market structures and private ownership; it challenges how markets behave, not whether they exist</div></div>
+          <div class="quiz-option" data-i="2"><div class="opt-letter">C</div><div class="opt-text">Dynamic Capitalism and socialism share the same end goals but differ only in pace and method</div></div>
+          <div class="quiz-option" data-i="3"><div class="opt-letter">D</div><div class="opt-text">The distinction doesn't matter as long as outcomes for workers improve</div></div>
+        </div>
+        <div class="quiz-feedback correct">Correct. Dynamic Capitalism is explicitly not socialism; it works inside markets and private ownership. It challenges how markets behave, not whether they exist.</div>
+        <div class="quiz-feedback incorrect">Not quite. Dynamic Capitalism does not advocate for government ownership of industry, does not share socialism's end goals, and the distinction does matter. It operates inside markets; it challenges behavior, not existence.</div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="quiz-question" data-q="4" data-correct="2">
+        <h3>How does Dynamic Capitalism differ most fundamentally from ESG frameworks?</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" data-i="0"><div class="opt-letter">A</div><div class="opt-text">Dynamic Capitalism ignores environmental concerns while ESG prioritizes them</div></div>
+          <div class="quiz-option" data-i="1"><div class="opt-letter">B</div><div class="opt-text">ESG is legally required while Dynamic Capitalism is voluntary</div></div>
+          <div class="quiz-option" data-i="2"><div class="opt-letter">C</div><div class="opt-text">ESG primarily functions as a corporate measurement and reporting tool, while Dynamic Capitalism is a systemic framework for how economies and institutions should be structured</div></div>
+          <div class="quiz-option" data-i="3"><div class="opt-letter">D</div><div class="opt-text">Dynamic Capitalism applies only to small businesses while ESG is designed for publicly traded companies</div></div>
+        </div>
+        <div class="quiz-feedback correct">Correct. ESG is a scoreboard; it measures and reports. Dynamic Capitalism is an operating system; it defines how economies and institutions should be built. One asks "how do we score?" The other asks "how do we build?"</div>
+        <div class="quiz-feedback incorrect">Not quite. ESG is a measurement and reporting tool. A corporate scoreboard. Dynamic Capitalism is a systemic framework for how economies are structured. Neither is legally required, and both can apply across company sizes.</div>
+      </div>
+
+      <div class="quiz-score" id="m3-quiz-score">
+        <div class="score-num" id="m3-score-display">0/5</div>
+        <div class="score-label">Quiz 3 Complete</div>
+        <div class="score-msg" id="m3-score-msg"></div>
+        <br>
+        <button class="btn btn-secondary" onclick="resetQuiz3()">Retake Quiz</button>
+      </div>
+
+      <div class="quiz-actions" id="m3-quiz-actions">
+        <button class="btn btn-secondary" id="m3-btn-check" onclick="checkAnswer3()" disabled>Check Answer</button>
+        <button class="btn btn-primary" id="m3-btn-next" onclick="nextQuestion3()" style="display:none">Next Question →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 6: SEARCH ACTIVITY -->
+<div id="m3-activity" class="bg-white-section">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num blue">6</div>
+      <h2 class="section-title">Activity; Pillars in the Community</h2>
+    </div>
+
+    <p style="font-size:0.92rem;color:var(--slate);margin-bottom:1.5rem;line-height:1.7;">The three tenets of Dynamic Capitalism aren't just theory: they show up in how real companies operate, make decisions, and create value. This activity asks you to find one and examine it closely.</p>
+
+    <div class="rubric-card">
+      <h3>Step 1: Find Your Company</h3>
+      <p>Search for a business, local, regional, or national, that you believe operates differently from a purely shareholder-primacy model. A few starting points:</p>
+      <ul>
+        <li>Search "employee ownership companies [your city or state]"</li>
+        <li>Search "B Corp certified [your industry]"</li>
+        <li>Search "companies that share profits with workers"</li>
+        <li>Search "values-driven business examples"</li>
+      </ul>
+      <div style="margin-top:1rem;">
+        <label style="font-size:0.85rem;font-weight:600;color:var(--navy);display:block;margin-bottom:0.4rem;">Company name, industry, and link or source:</label>
+        <textarea id="m3-company" placeholder="Company name, industry, and where you found it..." style="min-height:70px;"></textarea>
+      </div>
+    </div>
+
+    <div class="rubric-card">
+      <h3>Step 2: Identify the Tenets</h3>
+      <p>For each tenet that applies, write 2–3 sentences explaining specifically how the company demonstrates it. Use evidence. A policy, a practice, a business decision, a public statement. Not every company will hit all three. That's fine.</p>
+      <div style="display:flex;flex-direction:column;gap:1rem;margin-top:1rem;">
+        <div>
+          <label style="font-size:0.85rem;font-weight:600;color:var(--blue);display:block;margin-bottom:0.4rem;">Shared Prosperity; does the company distribute gains broadly across workers, owners, and community?</label>
+          <textarea id="m3-tenet1" placeholder="How does this company demonstrate Shared Prosperity? (or N/A)" style="min-height:90px;"></textarea>
+        </div>
+        <div>
+          <label style="font-size:0.85rem;font-weight:600;color:var(--red);display:block;margin-bottom:0.4rem;">Adaptive Institutions; does it engage with or help shape policy, measurement, or structural change in its industry?</label>
+          <textarea id="m3-tenet2" placeholder="How does this company demonstrate Adaptive Institutions? (or N/A)" style="min-height:90px;"></textarea>
+        </div>
+        <div>
+          <label style="font-size:0.85rem;font-weight:600;color:var(--navy);display:block;margin-bottom:0.4rem;">Values-Driven Leadership; do its leaders make decisions visibly anchored in something beyond quarterly returns?</label>
+          <textarea id="m3-tenet3" placeholder="How does this company demonstrate Values-Driven Leadership? (or N/A)" style="min-height:90px;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="rubric-card">
+      <h3>Step 3: Describe the Outcome</h3>
+      <p>In 3–4 sentences, describe what this approach has produced for the company's industry or community. Has it changed how competitors operate? Shifted expectations for workers or customers? Demonstrated that a different model is viable?</p>
+      <div style="margin-top:1rem;">
+        <textarea id="m3-outcome" placeholder="Describe the outcome for the company's industry or community..." style="min-height:110px;"></textarea>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:flex-end;margin-top:0.5rem;">
+      <button class="btn btn-primary" onclick="saveActivity3()">Save Activity</button>
+    </div>
+    <div id="m3-activity-saved" style="display:none;text-align:right;margin-top:0.5rem;font-size:0.82rem;color:var(--muted);">✓ Saved locally to this browser</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 7: EXIT TICKET -->
+<div id="m3-exit">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2 class="section-title">Exit Ticket</h2>
+    </div>
+    <div class="exit-ticket">
+      <h3>Two quick questions before Module 4</h3>
+      <div id="m3-exit-form">
+        <div class="exit-question">
+          <p><strong style="color:white;">Question 1; Clarity check</strong><br>Which of the three tenets of Dynamic Capitalism feels least clearly defined to you heading into Module 4?</p>
+          <div class="exit-options">
+            <label class="exit-option"><input type="radio" name="m3-exit1" value="sp"><div class="exit-dot"></div><span>Shared Prosperity</span></label>
+            <label class="exit-option"><input type="radio" name="m3-exit1" value="ai"><div class="exit-dot"></div><span>Adaptive Institutions</span></label>
+            <label class="exit-option"><input type="radio" name="m3-exit1" value="vl"><div class="exit-dot"></div><span>Values-Driven Leadership</span></label>
+            <label class="exit-option"><input type="radio" name="m3-exit1" value="all"><div class="exit-dot"></div><span>I feel confident about all three</span></label>
+          </div>
+        </div>
+        <div class="exit-question">
+          <p><strong style="color:white;">Question 2; Relevance check</strong></p>
+          <p style="font-style:italic;color:var(--offwhite);">"The tenet most relevant to my discipline or institution is __________ because __________."</p>
+          <div class="exit-textarea-wrap">
+            <textarea id="m3-exit-q2" placeholder="Complete the sentence..."></textarea>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:flex-end;margin-top:1rem;">
+          <button class="btn btn-primary" onclick="submitExit3()">Submit Exit Ticket</button>
+        </div>
+      </div>
+      <div class="exit-success" id="m3-exit-success">
+        <div class="check">✓</div>
+        <p>Exit ticket submitted. You're ready for Module 4: Pillar 3 Deep Dive: Values-Driven Leadership.</p>
+        <br>
+        <a href="#" style="color:var(--red);font-weight:600;font-size:0.9rem;">Continue to Module 4 →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── QUIZ 3 ──
+let m3_currentQ=0,m3_selected=null,m3_answered=false,m3_score=0;
+const m3_totalQ=5;
+const m3_questions=document.querySelectorAll('.quiz-question');
+
+function m3_updateProgress(){
+  const pct=((m3_currentQ+1)/m3_totalQ)*100;
+  document.getElementById('m3-q-progress').style.width=pct+'%';
+  document.getElementById('m3-q-counter').textContent='Question '+(m3_currentQ+1)+' of '+m3_totalQ;
+  document.getElementById('m3-q-score-live').textContent=m3_score+' / '+m3_totalQ;
+}
+
+m3_questions.forEach(q=>{
+  q.querySelectorAll('.quiz-option').forEach(opt=>{
+    opt.addEventListener('click',()=>{
+      if(m3_answered)return;
+      q.querySelectorAll('.quiz-option').forEach(o=>o.classList.remove('selected'));
+      opt.classList.add('selected');
+      m3_selected=parseInt(opt.dataset.i);
+      document.getElementById('m3-btn-check').disabled=false;
+    });
+  });
+});
+
+function checkAnswer3(){
+  if(m3_selected===null||m3_answered)return;
+  m3_answered=true;
+  document.getElementById('m3-btn-check').disabled=true;
+  document.getElementById('m3-btn-next').style.display='block';
+  const q=m3_questions[m3_currentQ];
+  const correct=parseInt(q.dataset.correct);
+  const opts=q.querySelectorAll('.quiz-option');
+  opts[correct].classList.add('correct');
+  const fbs=q.querySelectorAll('.quiz-feedback');
+  if(m3_selected!==correct){
+    opts[m3_selected].classList.add('incorrect');
+    fbs[1].style.display='block';
+  } else {
+    m3_score++;
+    document.getElementById('m3-q-score-live').textContent=m3_score+' / '+m3_totalQ;
+    fbs[0].style.display='block';
+  }
+  if(m3_currentQ===m3_totalQ-1) document.getElementById('m3-btn-next').textContent='See Results';
+}
+
+function nextQuestion3(){
+  if(m3_currentQ<m3_totalQ-1){
+    m3_questions[m3_currentQ].classList.remove('active');
+    m3_currentQ++;
+    m3_questions[m3_currentQ].classList.add('active');
+    m3_selected=null;m3_answered=false;
+    document.getElementById('m3-btn-check').disabled=true;
+    document.getElementById('m3-btn-next').style.display='none';
+    m3_updateProgress();
+  } else {
+    m3_questions.forEach(q=>q.style.display='none');
+    document.getElementById('m3-quiz-actions').style.display='none';
+    document.getElementById('m3-quiz-score').style.display='block';
+    document.getElementById('m3-score-display').textContent=m3_score+'/'+m3_totalQ;
+    const msgs=['Review the tenets section and try again.','Good start. Review what you missed.','Solid. A few concepts to revisit.','Strong work.','Perfect; you\'re ready for Module 4.'];
+    document.getElementById('m3-score-msg').textContent=msgs[Math.min(m3_score,4)];
+    document.getElementById('m3-q-progress').style.width='100%';
+  }
+}
+
+function resetQuiz3(){
+  m3_currentQ=0;m3_selected=null;m3_answered=false;m3_score=0;
+  m3_questions.forEach(q=>{
+    q.style.display='';q.classList.remove('active');
+    q.querySelectorAll('.quiz-option').forEach(o=>o.classList.remove('selected','correct','incorrect'));
+    q.querySelectorAll('.quiz-feedback').forEach(f=>f.style.display='none');
+  });
+  m3_questions[0].classList.add('active');
+  document.getElementById('m3-quiz-score').style.display='none';
+  document.getElementById('m3-quiz-actions').style.display='flex';
+  document.getElementById('m3-btn-check').disabled=true;
+  document.getElementById('m3-btn-next').style.display='none';
+  document.getElementById('m3-btn-next').textContent='Next Question →';
+  m3_updateProgress();
+  document.getElementById('m3-q-score-live').textContent='0 / 5';
+}
+
+m3_updateProgress();
+
+// ── EXIT ──
+document.querySelectorAll('.exit-option').forEach(opt=>{
+  opt.addEventListener('click',()=>{
+    const name=opt.querySelector('input').name;
+    document.querySelectorAll(`input[name="${name}"]`).forEach(i=>i.closest('.exit-option').classList.remove('selected'));
+    opt.classList.add('selected');
+    opt.querySelector('input').checked=true;
+  });
+});
+
+function submitExit3(){
+  const q1=document.querySelector('input[name="m3-exit1"]:checked');
+  const q2=document.getElementById('m3-exit-q2').value.trim();
+  if(!q1||!q2){alert('Please answer both questions before submitting.');return;}
+  document.getElementById('m3-exit-form').style.display='none';
+  document.getElementById('m3-exit-success').style.display='block';
+}
+
+function saveActivity3(){
+  document.getElementById('m3-activity-saved').style.display='block';
+}
+</script>
+<div id="m4-chapter" style="background:var(--navy);padding:2.5rem 2rem;text-align:center;border-top:4px solid var(--red);">
+  <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;">Capital Evolution · Faculty Track · Module 4</div>
+  <div style="font-family:'Libre Baskerville',serif;font-size:clamp(1.6rem,3vw,2.4rem);color:var(--white);font-weight:700;line-height:1.2;max-width:680px;margin:0 auto 0.75rem;">Pillar 3 Deep Dive: <span style="color:var(--red);">Values-Driven Leadership</span></div>
+  <div style="font-size:0.95rem;color:rgba(255,255,255,0.65);font-style:italic;max-width:520px;margin:0 auto 1.5rem;">The tenet that makes the other two work, and what it means for every discipline in this room.</div>
+  <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:8px;"><span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:5px 14px;font-size:0.78rem;color:rgba(255,255,255,0.8);">MLO 1; Values-Driven Leadership in depth</span><span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:5px 14px;font-size:0.78rem;color:rgba(255,255,255,0.8);">MLO 2; Leaders across sectors</span><span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:5px 14px;font-size:0.78rem;color:rgba(255,255,255,0.8);">MLO 3; Apply to your discipline</span><span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:5px 14px;font-size:0.78rem;color:rgba(255,255,255,0.8);">MLO 4; Design a teaching activity</span><span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:5px 14px;font-size:0.78rem;color:rgba(255,255,255,0.8);">MLO 5; Articulate the stakes</span></div>
+</div>
+<!-- SECTION 1: VIDEOS -->
+<div id="m4-videos">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2 class="section-title">Videos</h2>
+    </div>
+
+    <div style="margin-bottom:1.75rem;">
+      <h3 style="font-family:'Libre Baskerville',serif;font-size:1rem;color:var(--navy);margin-bottom:0.75rem;font-weight:700;">Ryan; Why Values-Driven Leadership Is the Linchpin</h3>
+      <div class="video-placeholder">
+        <div class="play-icon"><svg width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="video-label">Ryan; Pillar 3 Deep Dive (~10 min)</div>
+        <div class="video-sub">YouTube embed coming</div>
+      </div>
+      <p class="video-caption">Ryan walks through why Tenet 3 is the linchpin; every mechanism (Tenet 1) and institution (Tenet 2) depends on leaders willing to use them. She covers Patagonia, Schulman, Dimon, and Bhakti Chai, then connects it to your field.</p>
+    </div>
+
+    <div style="margin-bottom:1.75rem;">
+      <h3 style="font-family:'Libre Baskerville',serif;font-size:1rem;color:var(--navy);margin-bottom:0.75rem;font-weight:700;">Pop-Culture Tension; Larry Fink at Davos 2026</h3>
+      <div class="yt-card">
+        <div>
+          <div class="yt-card-label">Pop-Culture Clip · ~5 min · WEF 2026</div>
+          <div class="yt-card-title">Larry Fink; "Prosperity Isn't Just Growth in the Aggregate"</div>
+          <div class="yt-card-desc">The head of the world's largest asset manager opens Davos 2026 with a call to broaden who benefits from capitalism. The question worth sitting with: does he mean it, or is he managing reputation? That tension is the point.</div>
+        </div>
+        <a href="https://www.youtube.com/watch?v=FVAfs8_xaJ0" target="_blank" rel="noopener" class="yt-btn">
+          <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          Watch on YouTube
+        </a>
+      </div>
+      <div style="background:var(--offwhite);border-radius:var(--radius);padding:1rem 1.25rem;margin-top:0.75rem;">
+        <p style="font-size:0.85rem;color:var(--slate);line-height:1.6;"><strong style="color:var(--navy);">Key quote:</strong> "Prosperity isn't just growth in the aggregate. It can't be measured by GDP or the market caps of the world's largest companies alone. It has to be judged by how many people can see it, touch it, and build a future on it."</p>
+        <p style="font-size:0.85rem;color:var(--slate);line-height:1.6;margin-top:0.5rem;"><strong style="color:var(--navy);">The useful tension:</strong> Fink also warned that "if AI does to white-collar work what globalization did to blue-collar, we need to confront that directly." Coming from the head of BlackRock, which manages $10+ trillion in assets. This is either a genuine call for Values-Driven Leadership or the most expensive PR campaign in history. Faculty: which is it? How do you know?</p>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-family:'Libre Baskerville',serif;font-size:1rem;color:var(--navy);margin-bottom:0.75rem;font-weight:700;">Shannon Donnelly; Course Close</h3>
+      <div class="video-placeholder">
+        <div class="play-icon"><svg width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="video-label">Shannon Donnelly; The Cross-Disciplinary Picture (~5 min)</div>
+        <div class="video-sub">YouTube embed coming</div>
+      </div>
+      <p class="video-caption">Shannon closes the course: the cross-disciplinary picture this cohort built together, and an invitation to keep the conversation going. Reach out to Shannon Donnelly or Seth Levine directly with questions or next steps.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 2: READINGS -->
+<div id="m4-readings" class="bg-white-section">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num blue">2</div>
+      <h2 class="section-title">Readings</h2>
+    </div>
+
+    <div class="reading-card red-border">
+      <div class="reading-type">Primary Source · Required</div>
+      <h3>Yvon Chouinard: "Earth Is Now Our Only Shareholder"</h3>
+      <p><em>Patagonia, September 14, 2022</em></p>
+      <p>In September 2022, Chouinard transferred the entire company (valued at $3 billion) to two new entities: the Patagonia Purpose Trust and the Holdfast Collective. All profits go to fighting climate change. "I never wanted to be a businessman," he writes. The letter is short, direct, and structurally significant: this isn't a mission statement, it's a legal transfer. Values-Driven Leadership expressed in the ownership structure itself.</p>
+      <div class="essay-summary">
+        <h4>What to notice</h4>
+        <ul>
+          <li>"Instead of extracting value from nature and transforming it into wealth for investors, we'll use the wealth Patagonia creates to protect the source of all wealth."</li>
+          <li>Chouinard explicitly rejected selling or going public: "What a disaster that would have been. Even public companies with good intentions are under too much pressure to create short-term gain."</li>
+          <li>The structure is irrevocable; not a pledge, not a PR campaign. The Chouinard family gave up the conventional founder payday entirely.</li>
+          <li>Run it through the Module 3 rubric: structural? Long-term? Authentic? This is what three-for-three looks like.</li>
+        </ul>
+      </div>
+      <br>
+      <a href="https://www.patagonia.com/ownership/" target="_blank" rel="noopener">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59L7.76 14.83l1.41 1.41L19 5.41V9h2V3h-7z"/></svg>
+        Read Yvon's letter
+      </a>
+    </div>
+
+    <div class="reading-card">
+      <div class="reading-type">Founder Profile · Colorado Example</div>
+      <h3>Brook Eddy, Bhakti Chai</h3>
+      <p><em>Boulder, Colorado · B Corp · Values-driven founder</em></p>
+      <p>Brook Eddy started Bhakti Chai in her Boulder kitchen in 2006, inspired by a trip to India studying a social movement built on the principle of Bhakti; devotion through social action. She built a multi-million dollar brand as a single mother of twins, certified B Corp, with a formal giving platform (GITA Giving) that has donated over half a million dollars to social causes. Organic, fair trade, zero-waste. A Colorado example of Values-Driven Leadership built from the founding story out.</p>
+      <div class="essay-summary">
+        <h4>Key points for discussion</h4>
+        <ul>
+          <li>Bhakti means "devotion": the company name itself encodes the values</li>
+          <li>B Corp certified: meets the highest standards of verified social and environmental performance</li>
+          <li>GITA Giving (Give, Inspire, Take Action). A formal giving platform, not an ad hoc donation</li>
+          <li>Started with less than $200 in capital; grew to $35M+ in revenue</li>
+          <li>The question for faculty: what does it mean to build values into a company before it has investors to answer to?</li>
+        </ul>
+      </div>
+      <br>
+      <a href="https://www.youtube.com/watch?v=j0xrMV_9Imc" target="_blank" rel="noopener">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59L7.76 14.83l1.41 1.41L19 5.41V9h2V3h-7z"/></svg>
+        Watch Brook Eddy founder interview (YouTube)
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 3: ACTIVITY -->
+<div id="m4-activity">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num red">3</div>
+      <h2 class="section-title">Activity; The Tenet in Your Field</h2>
+    </div>
+
+    <p style="font-size:0.92rem;color:var(--slate);margin-bottom:1.5rem;line-height:1.7;">Capitalism touches every field. Economics shows up in psychology, history, health sciences, art, education, criminal justice, IT, English; every discipline. This activity asks you to find the authentic intersection between one tenet and your own discipline, then design how you'd bring it into your teaching with the human stake made explicit.</p>
+
+    <div class="activity-card">
+      <div class="step-row">
+        <div style="background:var(--navy);color:white;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.85rem;font-weight:700;flex-shrink:0;">1</div>
+        <div class="step-content">
+          <h4>Pick your context</h4>
+          <p>What course do you teach (or what teaching moment recurs)? What discipline are you grounded in?</p>
+          <textarea id="m4-step1" placeholder="Describe your course, discipline, or teaching context..."></textarea>
+        </div>
+      </div>
+
+      <div class="step-row">
+        <div style="background:var(--navy);color:white;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.85rem;font-weight:700;flex-shrink:0;">2</div>
+        <div class="step-content">
+          <h4>Pick a tenet</h4>
+          <p>Which of the three feels like it has the most natural pull on your field?</p>
+          <div style="display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.5rem;" id="m4-tenet-pick">
+            <button class="btn btn-secondary" onclick="pickTenet4(this,'Shared Prosperity')">Shared Prosperity</button>
+            <button class="btn btn-secondary" onclick="pickTenet4(this,'Adaptive Institutions')">Adaptive Institutions</button>
+            <button class="btn btn-secondary" onclick="pickTenet4(this,'Values-Driven Leadership')">Values-Driven Leadership</button>
+          </div>
+          <input type="hidden" id="m4-tenet-val">
+        </div>
+      </div>
+
+      <div class="step-row">
+        <div style="background:var(--navy);color:white;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.85rem;font-weight:700;flex-shrink:0;">3</div>
+        <div class="step-content">
+          <h4>Find the intersection</h4>
+          <p>Where does this tenet already touch your discipline, even if your field doesn't use this language? Some examples to get unstuck:</p>
+          <div class="discipline-grid">
+            <div class="discipline-card"><div class="field">Psychology</div><p>Tenet 1 → economic insecurity & mental health; workers with ownership stakes show measurably lower anxiety and depression</p></div>
+            <div class="discipline-card"><div class="field">History</div><p>Tenet 2 → the New Deal as the original adaptive-institution case; postwar GI Bill as shared prosperity</p></div>
+            <div class="discipline-card"><div class="field">English / Literature</div><p>Tenet 3 → how narrative shapes who counts as a "good leader"; whose stories of work get told</p></div>
+            <div class="discipline-card"><div class="field">Health Sciences</div><p>Tenet 1 → social determinants of health; employment quality as a direct health input</p></div>
+            <div class="discipline-card"><div class="field">Education</div><p>Tenet 1 → teacher pay and ownership models; their connection to student outcomes</p></div>
+            <div class="discipline-card"><div class="field">Criminal Justice</div><p>Tenet 2 → reentry programs, economic mobility, and recidivism</p></div>
+            <div class="discipline-card"><div class="field">Computer Science / IT</div><p>Tenet 3 → who benefits from the value AI creates; algorithmic decisions about workers</p></div>
+            <div class="discipline-card"><div class="field">Art / Design</div><p>Tenet 3 → ethical design; whose aesthetics get funded and whose don't</p></div>
+          </div>
+          <textarea id="m4-step3" placeholder="Describe the intersection between your discipline and the tenet you chose..." style="margin-top:1rem;"></textarea>
+        </div>
+      </div>
+
+      <div class="step-row">
+        <div style="background:var(--navy);color:white;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.85rem;font-weight:700;flex-shrink:0;">4</div>
+        <div class="step-content">
+          <h4>Design the entry point</h4>
+          <p>What will you actually DO in your class. A reading, a discussion prompt, an assignment, a unit, a guest speaker? Be specific.</p>
+          <textarea id="m4-step4" placeholder="Describe the specific teaching activity, assignment, or entry point you'd use..."></textarea>
+        </div>
+      </div>
+
+      <div class="step-row">
+        <div style="background:var(--red);color:white;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.85rem;font-weight:700;flex-shrink:0;">5</div>
+        <div class="step-content">
+          <h4>Name the stake</h4>
+          <p>Why does this tenet matter for the people your students will become, the people they'll serve, and the world they're walking into? This is the part that converts academic exercise into purpose.</p>
+          <p style="font-size:0.82rem;color:var(--muted);font-style:italic;">Example: Shared Prosperity → workers can afford health insurance → measurable mental health, family stability, and life-outcome effects.</p>
+          <textarea id="m4-step5" placeholder="Name the human and societal stake that makes this matter for your students..."></textarea>
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:flex-end;margin-top:0.5rem;">
+        <button class="btn btn-primary" onclick="saveActivity4()">Save Activity</button>
+      </div>
+      <div id="m4-activity-saved" style="display:none;text-align:right;margin-top:0.5rem;font-size:0.82rem;color:var(--muted);">✓ Saved locally to this browser</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 4: CAPSTONE -->
+<div id="m4-capstone" class="bg-white-section">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num blue">4</div>
+      <h2 class="section-title">Capstone; Teaching the Stakes</h2>
+    </div>
+
+    <div class="capstone-card">
+      <h3>Video Submission · 3–5 minutes</h3>
+      <p class="overview">You've spent this course tracing how economic systems are built, who they serve, and what a different model could look like. Now the question is what you do with it. This capstone asks you to think forward; into your classroom, your discipline, and your students' lives.</p>
+
+      <div class="capstone-prompt">
+        <h4>The Classroom Experience</h4>
+        <p>What will your students actually encounter when you bring this into your course? Describe the moment. An activity, a discussion, a case, a question you'd put in front of them.</p>
+      </div>
+
+      <div class="capstone-prompt">
+        <h4>The Takeaway</h4>
+        <p>What do you want them to walk away understanding? Not just about Dynamic Capitalism, but about the human and societal stakes of the economic systems that shape their lives, their career prospects, and their communities.</p>
+      </div>
+
+      <div class="capstone-prompt">
+        <h4>The Honest Tension</h4>
+        <p>Where might this land uncomfortably in your discipline, and why is that discomfort worth sitting with?</p>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.06);border-radius:var(--radius);padding:1.25rem;margin-top:1rem;">
+        <p style="font-size:0.88rem;color:var(--offwhite);line-height:1.7;"><strong style="color:var(--white);">What we're looking for:</strong> Specificity over polish. We want to hear you think out loud about your actual students: their financial realities, their career trajectories, what they stand to gain or lose depending on how economic systems evolve. A conversational response is preferred over a scripted one.</p>
+      </div>
+
+      <div style="margin-top:1.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+        <span style="font-size:0.88rem;color:var(--offwhite);">Submit your video:</span>
+        <span style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:var(--radius);padding:0.5rem 1rem;font-size:0.85rem;color:var(--offwhite);">Upload link coming; check with Shannon for submission instructions</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 5: END-OF-COURSE SURVEY -->
+<div id="m4-survey">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2 class="section-title">End-of-Course Feedback Survey</h2>
+    </div>
+
+    <div id="m4-survey-form">
+      <!-- Q1 -->
+      <div class="survey-q">
+        <h4>Question 1; Course Synthesis Check<br><span style="font-weight:400;font-size:0.9rem;">Looking across all four modules, which concept will be most useful in your teaching, leadership, or professional practice?</span></h4>
+        <div class="survey-options" id="m4-sq1">
+          <label class="survey-option"><input type="radio" name="m4-sq1" value="a"><div class="survey-dot"></div><span>Understanding how capitalism evolved from the postwar consensus to neoliberalism</span></label>
+          <label class="survey-option"><input type="radio" name="m4-sq1" value="b"><div class="survey-dot"></div><span>Recognizing the role of the Golden Age in shaping today's institutions and expectations</span></label>
+          <label class="survey-option"><input type="radio" name="m4-sq1" value="c"><div class="survey-dot"></div><span>Applying the three tenets of Dynamic Capitalism</span></label>
+          <label class="survey-option"><input type="radio" name="m4-sq1" value="d"><div class="survey-dot"></div><span>Using Values-Driven Leadership as a lens for decision-making</span></label>
+          <label class="survey-option"><input type="radio" name="m4-sq1" value="e"><div class="survey-dot"></div><span>Connecting economic systems to my own discipline and students' experiences</span></label>
+          <label class="survey-option"><input type="radio" name="m4-sq1" value="other"><div class="survey-dot"></div><span>Another concept not listed above</span></label>
+        </div>
+        <div class="survey-open" id="m4-sq1-other" style="display:none;">
+          <textarea placeholder="Describe the concept..." style="min-height:60px;margin-top:0.5rem;"></textarea>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="survey-q">
+        <h4>Question 2: Relevance Check</h4>
+        <p style="font-size:0.88rem;color:var(--slate);margin-bottom:0.75rem;font-style:italic;">"The most important insight I am taking away from this course is __________ because __________."</p>
+        <textarea id="m4-sq2" placeholder="Complete the sentence..."></textarea>
+      </div>
+
+      <!-- Q3 -->
+      <div class="survey-q">
+        <h4>Question 3; Clarity Check<br><span style="font-weight:400;font-size:0.9rem;">Which topic would benefit from additional explanation, examples, or discussion?</span></h4>
+        <div class="survey-options" id="m4-sq3">
+          <label class="survey-option"><input type="radio" name="m4-sq3" value="a"><div class="survey-dot"></div><span>Bretton Woods and the postwar economic order</span></label>
+          <label class="survey-option"><input type="radio" name="m4-sq3" value="b"><div class="survey-dot"></div><span>Neoliberalism and shareholder primacy</span></label>
+          <label class="survey-option"><input type="radio" name="m4-sq3" value="c"><div class="survey-dot"></div><span>The Golden Age and its decline</span></label>
+          <label class="survey-option"><input type="radio" name="m4-sq3" value="d"><div class="survey-dot"></div><span>Shared Prosperity</span></label>
+          <label class="survey-option"><input type="radio" name="m4-sq3" value="e"><div class="survey-dot"></div><span>Adaptive Institutions</span></label>
+          <label class="survey-option"><input type="radio" name="m4-sq3" value="f"><div class="survey-dot"></div><span>Values-Driven Leadership</span></label>
+          <label class="survey-option"><input type="radio" name="m4-sq3" value="g"><div class="survey-dot"></div><span>Applying Dynamic Capitalism within my discipline</span></label>
+          <label class="survey-option"><input type="radio" name="m4-sq3" value="h"><div class="survey-dot"></div><span>None: the course was clear overall</span></label>
+          <label class="survey-option"><input type="radio" name="m4-sq3" value="other"><div class="survey-dot"></div><span>Other</span></label>
+        </div>
+        <div class="survey-open" id="m4-sq3-other" style="display:none;">
+          <textarea placeholder="Describe the topic..." style="min-height:60px;margin-top:0.5rem;"></textarea>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="survey-q">
+        <h4>Question 4; Course Improvement<br><span style="font-weight:400;font-size:0.9rem;">What is one thing we could add, remove, clarify, or improve to make this course more valuable for future faculty participants?</span></h4>
+        <textarea id="sq4" placeholder="Your suggestion..."></textarea>
+      </div>
+
+      <!-- Q5 -->
+      <div class="survey-q">
+        <h4>Question 5; Looking Forward<br><span style="font-weight:400;font-size:0.9rem;">After completing this course, how likely are you to incorporate one or more of these ideas into your teaching or conversations with students?</span></h4>
+        <div class="likert-row" id="m4-sq5">
+          <button class="likert-btn" onclick="selectLikert4(this)">Very likely</button>
+          <button class="likert-btn" onclick="selectLikert4(this)">Likely</button>
+          <button class="likert-btn" onclick="selectLikert4(this)">Unsure</button>
+          <button class="likert-btn" onclick="selectLikert4(this)">Unlikely</button>
+          <button class="likert-btn" onclick="selectLikert4(this)">Very unlikely</button>
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:flex-end;margin-top:1rem;">
+        <button class="btn btn-primary" onclick="submitSurvey4()">Submit Feedback</button>
+      </div>
+    </div>
+
+    <div class="survey-success" id="m4-survey-success">
+      <div class="check">✓</div>
+      <h3>Thank you for completing the course.</h3>
+      <p>Your feedback has been recorded. Shannon and the team will use it to shape the next iteration of Capital Evolution.</p>
+    </div>
+
+    <div class="course-complete">
+      <div class="red-line"></div>
+      <h2>You've completed Capital Evolution.</h2>
+      <p>The cross-disciplinary picture this cohort built together, from the postwar consensus to Dynamic Capitalism to the tenet in your field; is now yours to bring into your classroom, your department, and your students' futures.</p>
+      <p style="margin-top:1rem;font-size:0.88rem;color:rgba(255,255,255,0.5);">Questions or next steps? Reach out to Shannon Donnelly or Seth Levine directly.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+function pickTenet4(btn, val) {
+  document.querySelectorAll('#m4-tenet-pick .btn').forEach(b => {
+    b.classList.remove('btn-primary');
+    b.classList.add('btn-secondary');
+  });
+  btn.classList.remove('btn-secondary');
+  btn.classList.add('btn-primary');
+  document.getElementById('m4-tenet-val').value = val;
+}
+
+function saveActivity4() {
+  document.getElementById('m4-activity-saved').style.display = 'block';
+}
+
+// Survey options
+document.querySelectorAll('.survey-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    const name = opt.querySelector('input').name;
+    document.querySelectorAll(`input[name="${name}"]`).forEach(i => i.closest('.survey-option').classList.remove('selected'));
+    opt.classList.add('selected');
+    opt.querySelector('input').checked = true;
+    // Show/hide other field
+    const otherId = name + '-other';
+    const otherEl = document.getElementById(otherId);
+    if (otherEl) {
+      otherEl.style.display = opt.querySelector('input').value === 'other' ? 'block' : 'none';
+    }
+  });
+});
+
+function selectLikert4(btn) {
+  document.querySelectorAll('#m4-sq5 .likert-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+function submitSurvey4() {
+  const q1 = document.querySelector('input[name="m4-sq1"]:checked');
+  const q2 = document.getElementById('m4-sq2').value.trim();
+  const q3 = document.querySelector('input[name="m4-sq3"]:checked');
+  const q5 = document.querySelector('#m4-sq5 .likert-btn.selected');
+  if (!q1 || !q2 || !q3 || !q5) {
+    alert('Please answer all questions before submitting.');
+    return;
+  }
+  document.getElementById('m4-survey-form').style.display = 'none';
+  document.getElementById('m4-survey-success').style.display = 'block';
+}
+</script>
+</body>
+</html>
